@@ -40,12 +40,21 @@ namespace projetSurf.Manager
         }
 
         // ----- EDIT -----
-        public bool EditStudent(Student student)
+        //public bool EditStudent(Student student)
+        //{
+            //mettre le status de l'entité à modifier dans l'orm
+            //Context.Entry(student).State = EntityState.Modified;
+            //valider les changement dans la bd
+        //    return (Context.SaveChanges() > 0);
+        //}
+        public Student EditStudent(Student student)
         {
             //mettre le status de l'entité à modifier dans l'orm
             Context.Entry(student).State = EntityState.Modified;
             //valider les changement dans la bd
-            return (Context.SaveChanges() > 0);
+            if (Context.SaveChanges() > 0)
+                return student;
+            return null;
         }
 
 
@@ -56,13 +65,19 @@ namespace projetSurf.Manager
         }
         public List<Student> FindStudent(string name)
         {
-            var list = Context.Students.Where(p => p.NameClients.StartsWith(name));
+            var list = Context.Students.Where(p => p.FirstnameClients.StartsWith(name));
             return list.ToList();
         }
         public int NmbStudent()
         {
             int nmb = Context.Students.Count();
             return nmb;
+        }
+
+        public List<Student> AllStudents()
+        {
+            var list = Context.Students.AsQueryable();
+            return list.ToList();
         }
     }
 }

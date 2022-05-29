@@ -179,7 +179,7 @@ namespace projetSurf
             this.main_btnNav_logout.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_logout.Name = "main_btnNav_logout";
             this.main_btnNav_logout.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.main_btnNav_logout.Size = new System.Drawing.Size(181, 35);
+            this.main_btnNav_logout.Size = new System.Drawing.Size(182, 35);
             this.main_btnNav_logout.TabIndex = 14;
             this.main_btnNav_logout.Text = "Déconnexion";
             this.main_btnNav_logout.UseVisualStyleBackColor = false;

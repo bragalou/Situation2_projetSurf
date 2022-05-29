@@ -30,52 +30,32 @@ namespace projetSurf.Pages
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPageMaterials));
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.button9 = new System.Windows.Forms.Button();
+            this.main_materiel_listview = new System.Windows.Forms.ListView();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.main_material_btn_reset = new System.Windows.Forms.Button();
+            this.main_material_inputRecherche = new System.Windows.Forms.TextBox();
+            this.main_material_btn_recherche = new System.Windows.Forms.Button();
+            this.main_material_btn_update = new System.Windows.Forms.Button();
+            this.main_material_btn_ajouter = new System.Windows.Forms.Button();
+            this.main_material_btn_delete = new System.Windows.Forms.Button();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel21.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button7.Location = new System.Drawing.Point(203, 421);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(201, 27);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "Supprimer le client";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button8.Location = new System.Drawing.Point(203, 382);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(201, 27);
-            this.button8.TabIndex = 20;
-            this.button8.Text = "Modifier le client";
-            this.button8.UseVisualStyleBackColor = true;
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.listView2);
+            this.panel12.Controls.Add(this.main_materiel_listview);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel12.Location = new System.Drawing.Point(595, 50);
             this.panel12.Margin = new System.Windows.Forms.Padding(2);
@@ -83,30 +63,19 @@ namespace projetSurf.Pages
             this.panel12.Size = new System.Drawing.Size(600, 531);
             this.panel12.TabIndex = 11;
             // 
-            // listView2
+            // main_materiel_listview
             // 
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 0);
-            this.listView2.Margin = new System.Windows.Forms.Padding(2);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(600, 531);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button9.Location = new System.Drawing.Point(203, 344);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(201, 27);
-            this.button9.TabIndex = 14;
-            this.button9.Text = "Ajouter un nouveau client";
-            this.button9.UseVisualStyleBackColor = true;
+            this.main_materiel_listview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.main_materiel_listview.FullRowSelect = true;
+            this.main_materiel_listview.GridLines = true;
+            this.main_materiel_listview.HideSelection = false;
+            this.main_materiel_listview.Location = new System.Drawing.Point(0, 0);
+            this.main_materiel_listview.Margin = new System.Windows.Forms.Padding(2);
+            this.main_materiel_listview.Name = "main_materiel_listview";
+            this.main_materiel_listview.Size = new System.Drawing.Size(600, 531);
+            this.main_materiel_listview.TabIndex = 0;
+            this.main_materiel_listview.UseCompatibleStateImageBehavior = false;
+            this.main_materiel_listview.View = System.Windows.Forms.View.Details;
             // 
             // panel13
             // 
@@ -161,17 +130,6 @@ namespace projetSurf.Pages
             this.textBox4.Size = new System.Drawing.Size(152, 27);
             this.textBox4.TabIndex = 12;
             // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button10.Location = new System.Drawing.Point(426, 134);
-            this.button10.Margin = new System.Windows.Forms.Padding(2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(99, 27);
-            this.button10.TabIndex = 19;
-            this.button10.Text = "Reset Data";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -204,26 +162,88 @@ namespace projetSurf.Pages
             this.label11.TabIndex = 15;
             this.label11.Text = "Prénom :";
             // 
-            // button11
+            // panel21
             // 
-            this.button11.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button11.Location = new System.Drawing.Point(426, 103);
-            this.button11.Margin = new System.Windows.Forms.Padding(2);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(99, 27);
-            this.button11.TabIndex = 18;
-            this.button11.Text = "Rechercher";
-            this.button11.UseVisualStyleBackColor = true;
+            this.panel21.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel21.Controls.Add(this.main_material_btn_reset);
+            this.panel21.Controls.Add(this.main_material_inputRecherche);
+            this.panel21.Controls.Add(this.main_material_btn_recherche);
+            this.panel21.Location = new System.Drawing.Point(16, 63);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(561, 41);
+            this.panel21.TabIndex = 43;
             // 
-            // textBox6
+            // main_material_btn_reset
             // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox6.Location = new System.Drawing.Point(78, 104);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.PlaceholderText = "Rechercher un client";
-            this.textBox6.Size = new System.Drawing.Size(344, 27);
-            this.textBox6.TabIndex = 17;
+            this.main_material_btn_reset.BackColor = System.Drawing.Color.White;
+            this.main_material_btn_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_material_btn_reset.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_material_btn_reset.Location = new System.Drawing.Point(456, 7);
+            this.main_material_btn_reset.Margin = new System.Windows.Forms.Padding(2);
+            this.main_material_btn_reset.Name = "main_material_btn_reset";
+            this.main_material_btn_reset.Size = new System.Drawing.Size(99, 27);
+            this.main_material_btn_reset.TabIndex = 40;
+            this.main_material_btn_reset.Text = "Reset";
+            this.main_material_btn_reset.UseVisualStyleBackColor = false;
+            // 
+            // main_material_inputRecherche
+            // 
+            this.main_material_inputRecherche.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_material_inputRecherche.Location = new System.Drawing.Point(6, 7);
+            this.main_material_inputRecherche.Margin = new System.Windows.Forms.Padding(2);
+            this.main_material_inputRecherche.Name = "main_material_inputRecherche";
+            this.main_material_inputRecherche.PlaceholderText = "Rechercher un cours";
+            this.main_material_inputRecherche.Size = new System.Drawing.Size(343, 27);
+            this.main_material_inputRecherche.TabIndex = 1;
+            // 
+            // main_material_btn_recherche
+            // 
+            this.main_material_btn_recherche.BackColor = System.Drawing.Color.White;
+            this.main_material_btn_recherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_material_btn_recherche.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_material_btn_recherche.Location = new System.Drawing.Point(353, 7);
+            this.main_material_btn_recherche.Margin = new System.Windows.Forms.Padding(2);
+            this.main_material_btn_recherche.Name = "main_material_btn_recherche";
+            this.main_material_btn_recherche.Size = new System.Drawing.Size(99, 27);
+            this.main_material_btn_recherche.TabIndex = 39;
+            this.main_material_btn_recherche.Text = "Rechercher";
+            this.main_material_btn_recherche.UseVisualStyleBackColor = false;
+            // 
+            // main_material_btn_update
+            // 
+            this.main_material_btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_material_btn_update.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_material_btn_update.Location = new System.Drawing.Point(213, 536);
+            this.main_material_btn_update.Margin = new System.Windows.Forms.Padding(2);
+            this.main_material_btn_update.Name = "main_material_btn_update";
+            this.main_material_btn_update.Size = new System.Drawing.Size(170, 34);
+            this.main_material_btn_update.TabIndex = 53;
+            this.main_material_btn_update.Text = "Modifier le matériel";
+            this.main_material_btn_update.UseVisualStyleBackColor = true;
+            // 
+            // main_material_btn_ajouter
+            // 
+            this.main_material_btn_ajouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_material_btn_ajouter.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_material_btn_ajouter.Location = new System.Drawing.Point(11, 536);
+            this.main_material_btn_ajouter.Margin = new System.Windows.Forms.Padding(2);
+            this.main_material_btn_ajouter.Name = "main_material_btn_ajouter";
+            this.main_material_btn_ajouter.Size = new System.Drawing.Size(170, 34);
+            this.main_material_btn_ajouter.TabIndex = 52;
+            this.main_material_btn_ajouter.Text = "Ajouter le matériel";
+            this.main_material_btn_ajouter.UseVisualStyleBackColor = true;
+            // 
+            // main_material_btn_delete
+            // 
+            this.main_material_btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_material_btn_delete.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_material_btn_delete.Location = new System.Drawing.Point(415, 536);
+            this.main_material_btn_delete.Margin = new System.Windows.Forms.Padding(2);
+            this.main_material_btn_delete.Name = "main_material_btn_delete";
+            this.main_material_btn_delete.Size = new System.Drawing.Size(170, 34);
+            this.main_material_btn_delete.TabIndex = 54;
+            this.main_material_btn_delete.Text = "Supprimer le materiel";
+            this.main_material_btn_delete.UseVisualStyleBackColor = true;
             // 
             // FormPageMaterials
             // 
@@ -231,18 +251,16 @@ namespace projetSurf.Pages
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1195, 581);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.main_material_btn_update);
+            this.Controls.Add(this.main_material_btn_ajouter);
+            this.Controls.Add(this.main_material_btn_delete);
+            this.Controls.Add(this.panel21);
             this.Controls.Add(this.panel12);
-            this.Controls.Add(this.button9);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.button10);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.textBox6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPageMaterials";
             this.Text = "FormMaterials";
@@ -250,28 +268,30 @@ namespace projetSurf.Pages
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ListView main_materiel_listview;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Button main_material_btn_reset;
+        private System.Windows.Forms.TextBox main_material_inputRecherche;
+        private System.Windows.Forms.Button main_material_btn_recherche;
+        private System.Windows.Forms.Button main_material_btn_update;
+        private System.Windows.Forms.Button main_material_btn_ajouter;
+        private System.Windows.Forms.Button main_material_btn_delete;
     }
 }

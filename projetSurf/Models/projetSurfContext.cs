@@ -40,8 +40,8 @@ namespace projetSurf.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasCharSet("latin1")
-                .UseCollation("latin1_swedish_ci");
+            modelBuilder.HasCharSet("utf8")
+                .UseCollation("utf8_general_ci");
 
             modelBuilder.Entity<Board>(entity =>
             {
@@ -149,12 +149,19 @@ namespace projetSurf.Models
                     .HasMaxLength(50)
                     .HasColumnName("day_lessons");
 
-                entity.Property(e => e.DurationLessons).HasColumnName("duration_lessons");
+                entity.Property(e => e.DurationLessons)
+                    .HasColumnType("time")
+                    .HasColumnName("duration_lessons");
 
                 entity.Property(e => e.LevelLessons)
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasColumnName("level_lessons");
+
+                entity.Property(e => e.NameLessons)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("name_lessons");
 
                 entity.Property(e => e.NmbMaxLessons)
                     .HasColumnType("int(11)")
@@ -164,9 +171,12 @@ namespace projetSurf.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("number_lessons");
 
-                entity.Property(e => e.PriceLessons).HasColumnName("price_lessons");
+                entity.Property(e => e.PriceLessons)
+                    .HasColumnName("price_lessons");
 
-                entity.Property(e => e.StartHourLessons).HasColumnName("startHour_lessons");
+                entity.Property(e => e.StartHourLessons)
+                    .HasColumnType("time")
+                    .HasColumnName("startHour_lessons");
             });
 
             modelBuilder.Entity<Monitor>(entity =>
@@ -192,7 +202,6 @@ namespace projetSurf.Models
                     .HasColumnName("firstname_monitors");
 
                 entity.Property(e => e.LoginMonitor)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("login_monitor");
 
@@ -202,7 +211,6 @@ namespace projetSurf.Models
                     .HasColumnName("name_monitors");
 
                 entity.Property(e => e.PasswordMonitor)
-                    .IsRequired()
                     .HasMaxLength(200)
                     .HasColumnName("password_monitor");
 

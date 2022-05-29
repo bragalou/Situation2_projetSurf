@@ -7,6 +7,12 @@ namespace projetSurf.Models
 {
     public partial class Perform
     {
+        public Perform(int idMonitors, int idLessons)
+        {
+            IdMonitors = idMonitors;
+            IdLessons = idLessons;
+        }
+
         public int IdMonitors { get; set; }
         public int IdLessons { get; set; }
 

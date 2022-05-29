@@ -15,7 +15,7 @@ namespace projetSurf.Pages
     public partial class FormPageClients : Form
     {
         ClientManager ClientManager = new ClientManager();
-        private Client ClientSelected;
+        private Client clientSelected;
 
 
 
@@ -54,10 +54,10 @@ namespace projetSurf.Pages
             ListView.SelectedListViewItemCollection selected = main_client_listview.SelectedItems;
             if (selected.Count == 1)
             {
-                ClientSelected = selected[0].Tag as Client;
+                clientSelected = selected[0].Tag as Client;
 
-                main_client_inputFirstname.Text = ClientSelected.FirstnameClients;
-                main_client_inputName.Text = ClientSelected.NameClients;
+                main_client_inputFirstname.Text = clientSelected.FirstnameClients;
+                main_client_inputName.Text = clientSelected.NameClients;
             }
         }
 
@@ -79,15 +79,15 @@ namespace projetSurf.Pages
         }
         private void main_client_btn_modifier_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(main_client_inputFirstname.Text) || string.IsNullOrEmpty(main_client_inputName.Text) || ClientSelected == null)
+            if (string.IsNullOrEmpty(main_client_inputFirstname.Text) || string.IsNullOrEmpty(main_client_inputName.Text) || clientSelected == null)
             {
                 MessageBox.Show("Aucun client sélectionné");
             }
             else
             {
-                ClientSelected.FirstnameClients = main_client_inputFirstname.Text;
-                ClientSelected.NameClients = main_client_inputName.Text;
-                ClientManager.EditClient(ClientSelected);
+                clientSelected.FirstnameClients = main_client_inputFirstname.Text;
+                clientSelected.NameClients = main_client_inputName.Text;
+                ClientManager.EditClient(clientSelected);
 
                 ClientResetInput();
                 ClientReloadData(ClientManager.AllClient());
@@ -95,13 +95,13 @@ namespace projetSurf.Pages
         }
         private void main_client_btn_supprimer_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(main_client_inputFirstname.Text) || string.IsNullOrEmpty(main_client_inputName.Text) || ClientSelected == null)
+            if (string.IsNullOrEmpty(main_client_inputFirstname.Text) || string.IsNullOrEmpty(main_client_inputName.Text) || clientSelected == null)
             {
                 MessageBox.Show("Aucun client sélectionné");
             }
             else
             {
-                ClientManager.DeleteClient(ClientSelected);
+                ClientManager.DeleteClient(clientSelected);
 
                 ClientResetInput();
                 ClientReloadData(ClientManager.AllClient());
@@ -135,7 +135,7 @@ namespace projetSurf.Pages
             main_client_input_rechercher.Text = "";
             main_client_inputName.Text = "";
             main_client_inputFirstname.Text = "";
-            ClientSelected = null;
+            clientSelected = null;
         }
         #endregion
 

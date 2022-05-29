@@ -68,17 +68,17 @@ namespace projetSurf.Pages
         // Gestion
         private void main_monitor_btn_ajouter_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || string.IsNullOrEmpty(main_monitor_inputTel.Text))
+            if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || string.IsNullOrEmpty(main_monitor_inputTel.Text) || string.IsNullOrEmpty(main_monitor_inputDate.ToString()))
             {
                 MessageBox.Show("Les champs ne sont pas tous remplis");
                 return;
             }
             else
             {
-                Monitor monitor = new Monitor();
+                Monitor newMonintor = new Monitor();
                 if (string.IsNullOrEmpty(main_monitor_inputLogin.Text) && string.IsNullOrEmpty(main_monitor_inputPassword.Text))
                 {
-                    monitor = new Monitor(main_monitor_inputName.Text, main_monitor_inputFirstname.Text, main_monitor_inputDate.Value, main_monitor_inputTel.Text, false);
+                    newMonintor = new Monitor(main_monitor_inputName.Text, main_monitor_inputFirstname.Text, main_monitor_inputDate.Value, main_monitor_inputTel.Text, false);
                 }
                 else if (!string.IsNullOrEmpty(main_monitor_inputLogin.Text) && !string.IsNullOrEmpty(main_monitor_inputPassword.Text))
                 {
@@ -92,7 +92,7 @@ namespace projetSurf.Pages
                             byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
                             hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
 
-                            monitor = new Monitor(main_monitor_inputName.Text, main_monitor_inputFirstname.Text, main_monitor_inputDate.Value, main_monitor_inputTel.Text, true, main_monitor_inputLogin.Text, hash);
+                            newMonintor = new Monitor(main_monitor_inputName.Text, main_monitor_inputFirstname.Text, main_monitor_inputDate.Value, main_monitor_inputTel.Text, true, main_monitor_inputLogin.Text, hash);
                         }
                     }
                     else
@@ -107,7 +107,7 @@ namespace projetSurf.Pages
                     return;
                 }
 
-                MonitorManager.AddMonitor(monitor);
+                MonitorManager.AddMonitor(newMonintor);
 
                 MonitorResetInput();
                 MonitorReloadData(MonitorManager.AllMonitor());
@@ -197,6 +197,7 @@ namespace projetSurf.Pages
 
         #endregion
 
+
         #region ----- Monitor Gestionnaire -----
         private void MonitorAffichageListeview()
         {
@@ -211,6 +212,12 @@ namespace projetSurf.Pages
             main_monitor_listview.Items.Clear();
             foreach (Monitor monitor in list)
             {
+                //Console.WriteLine(monitor);
+                string performs = "0";
+                if (monitor.Performs != null)
+                {
+                    performs = monitor.Performs.Count().ToString();
+                }
                 string admin = "Non";
                 if (monitor.AdministratorMonitor.ToString() == "True")
                 {
@@ -221,8 +228,9 @@ namespace projetSurf.Pages
                     monitor.FirstnameMonitors.ToString(),
                     monitor.NameMonitors.ToString().ToUpper(),
                     admin,
-                    monitor.Performs.Count().ToString(),
-                });
+                    //monitor.Performs.Count().ToString()
+                    performs
+                });  
                 lvi.Tag = monitor;
                 main_monitor_listview.Items.Add(lvi);
             }
@@ -236,11 +244,14 @@ namespace projetSurf.Pages
             main_monitor_inputTel.Text = "";
             main_monitor_inputLogin.Text = "";
             main_monitor_inputPassword.Text = "";
+            MonitorSelected = null;
         }
 
         #endregion
 
         #endregion
+
+
 
         private void label15_Click(object sender, EventArgs e)
         {

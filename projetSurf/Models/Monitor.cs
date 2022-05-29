@@ -12,6 +12,11 @@ namespace projetSurf.Models
             Performs = new HashSet<Perform>();
         }
 
+        public string CompletName
+        {
+            get { return FirstnameMonitors + " " +NameMonitors; }
+        }
+
         public Monitor(string nameMonitors, string firstnameMonitors, DateTime dateBirthMonitors, string phoneMonitor, bool administratorMonitor)
         {
             NameMonitors = nameMonitors;
@@ -22,7 +27,7 @@ namespace projetSurf.Models
         }
 
         public Monitor(string nameMonitors, string firstnameMonitors, DateTime dateBirthMonitors, string phoneMonitor, bool administratorMonitor, string passwordMonitor, string loginMonitor)
-            :this(nameMonitors, firstnameMonitors, dateBirthMonitors, phoneMonitor, administratorMonitor)
+            : this(nameMonitors, firstnameMonitors, dateBirthMonitors, phoneMonitor, administratorMonitor)
         {
             PasswordMonitor = passwordMonitor;
             LoginMonitor = loginMonitor;

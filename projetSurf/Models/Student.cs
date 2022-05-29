@@ -11,6 +11,15 @@ namespace projetSurf.Models
         {
             Dos = new HashSet<Do>();
         }
+        public Student(int idClients, string firstnameClients, string nameClients, string phoneStudents, string postalCodeStudents, DateTime dateBirthStudents)
+        {
+            IdClients = idClients;
+            DateBirthStudents = dateBirthStudents;
+            PhoneStudents = phoneStudents;
+            PostalCodeStudents = postalCodeStudents;
+            NameClients = nameClients;
+            FirstnameClients = firstnameClients;
+        }
 
         public int IdClients { get; set; }
         public DateTime DateBirthStudents { get; set; }

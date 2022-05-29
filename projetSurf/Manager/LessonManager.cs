@@ -54,9 +54,41 @@ namespace projetSurf.Manager
         {
             return Context.Lessons.Find(id);
         }
-        public List<Lesson> FindLessonLevel(string level)
+        public List<Lesson> FindLessonByLevel(string level)
         {
-            var list = Context.Lessons.Where(p => p.LevelLessons.StartsWith(level));
+            var list = Context.Lessons.Where(p => p.LevelLessons.Contains(level));
+            return list.ToList();
+        }
+        public List<Lesson> FindAllLessonByName(string name)
+        {
+            var list = Context.Lessons.Where(p => p.NameLessons.Contains(name));
+            return list.ToList();
+        }
+        public List<Lesson> FindAllExactLessonByName(string name)
+        {
+            var list = Context.Lessons.Where(p => p.NameLessons.Equals(name));
+            return list.ToList();
+        }
+        public List<Lesson> FindUniqueExactLessonByName(string name)
+        {
+            var list = Context.Lessons.Where(p => p.NameLessons.Equals(name)).Take(1);
+            return list.ToList();
+        }
+
+
+        public List<Lesson> AllLessons()
+        {
+            var list = Context.Lessons.AsQueryable();
+            list = list.OrderBy(f => f.DayLessons).OrderBy(f => f.StartHourLessons);
+            return list.ToList();
+        }
+
+        public List<Lesson> AllLessonsInProgress()
+        {
+            DateTime today = DateTime.Now;
+            var list = Context.Lessons.AsQueryable();
+            list = list.Where(f => f.DateStartLessons.AddDays(f.NumberLessons*7) >= today);
+            list = list.OrderBy(f => f.DayLessons).ThenBy(f => f.StartHourLessons);
             return list.ToList();
         }
     }
