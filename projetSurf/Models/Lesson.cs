@@ -38,6 +38,7 @@ namespace projetSurf.Models
         public int NmbMaxLessons { get; set; }
         public float PriceLessons { get; set; }
         public string LevelLessons { get; set; }
+        public int placeDispo { get; set; }
 
         public virtual ICollection<Do> Dos { get; set; }
         public virtual ICollection<Perform> Performs { get; set; }

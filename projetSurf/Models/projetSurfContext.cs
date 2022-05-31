@@ -177,6 +177,8 @@ namespace projetSurf.Models
                 entity.Property(e => e.StartHourLessons)
                     .HasColumnType("time")
                     .HasColumnName("startHour_lessons");
+
+                entity.Property(e => e.placeDispo).HasColumnName("placeDispo").HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Monitor>(entity =>

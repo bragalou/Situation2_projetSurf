@@ -105,7 +105,7 @@ namespace projetSurf.Pages
                 Student studentAdd = StudentManager.EditStudent(StudentSelected);
 
                 Do inscrit = new Do((int)main_student_inputLesson.SelectedValue, studentAdd.IdClients);
-                DoManager.EditDo(inscrit);
+                DoManager.REmove(studentAdd.IdClients, (int)main_student_inputLesson.SelectedValue);
 
                 StudentResetInput();
                 StudentReloadData(StudentManager.AllStudents());
@@ -120,6 +120,8 @@ namespace projetSurf.Pages
             }
             else
             {
+                DoManager.REmove(StudentSelected.IdClients, (int)main_student_inputLesson.SelectedValue);
+
                 StudentManager.DeleteStudent(StudentSelected);
 
                 StudentResetInput();

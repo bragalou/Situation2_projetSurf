@@ -16,6 +16,7 @@ namespace projetSurf.Pages
     public partial class FormPageMonitors : Form
     {
         MonitorManager MonitorManager = new MonitorManager();
+        PerformManager performManager = new PerformManager();
         private Monitor MonitorSelected;
 
 
@@ -185,10 +186,30 @@ namespace projetSurf.Pages
             if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || MonitorSelected is null)
             {
                 MessageBox.Show("Aucun employé sélectionné");
+                return;
             }
             else
             {
-                MonitorManager.DeleteMonitor(MonitorSelected);
+                List<Perform> listMonitor = performManager.FindMonitor(MonitorSelected.IdMonitors);
+                if (listMonitor.Count == 0)
+                {
+                    MonitorManager.DeleteMonitor(MonitorSelected);
+                }
+                else
+                {
+                    Perform perform;
+                    string message = "";
+                    foreach (Perform performs in listMonitor)
+                    {
+                        perform = new Perform(MonitorSelected.IdMonitors, performs.IdMonitors);
+                        message = message + perform.IdLessons.ToString();
+                        performManager.DeletePerfom(perform);
+                        //MonitorManager.DeleteMonitor(MonitorSelected);
+                    }
+
+                    //performManager.DeletePerformByMonitor(MonitorSelected.IdMonitors);
+                    MessageBox.Show("le(s) cours num :" + message + " à plus de prof");
+                }
 
                 MonitorResetInput();
                 MonitorReloadData(MonitorManager.AllMonitor());

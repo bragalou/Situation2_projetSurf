@@ -1,4 +1,4 @@
-﻿using projetSurf.Manager;
+﻿    using projetSurf.Manager;
 using projetSurf.Models;
 using System;
 using System.Collections.Generic;
@@ -135,7 +135,50 @@ namespace projetSurf.Pages
                 LessonResetInput();
                 LessonReloadData(lessonManager.AllLessonsInProgress());
             }
-        }       
+        }
+
+
+        private void main_lesson_btn_top3_Click(object sender, EventArgs e)
+        {
+            LessonResetInput();
+            LessonReloadDataTOP3(lessonManager.AllLessonsInProgressTOP3());
+
+        }
+
+
+        private void LessonReloadDataTOP3(List<Lesson> list)
+        {
+            main_lesson_listview.Items.Clear();
+            foreach (Lesson lesson in list)
+            {
+                //string nmbPlaceDispo = (lesson.NmbMaxLessons - doManager.FindStudentByLesson(lesson.IdLessons).Count()).ToString();
+                var monitor = performManager.FindMonitorByLesson(lesson.IdLessons);
+
+                string nameMonitor = "aucun";
+                if (monitor.Count > 0)
+                {
+                    nameMonitor = monitor[0].IdMonitorsNavigation.FirstnameMonitors.ToString();
+                }
+
+                ListViewItem lvi = new ListViewItem(new string[]
+                {
+                    lesson.DayLessons.ToString(),
+                    lesson.StartHourLessons.ToString().ToUpper() + " H",
+                    lesson.NameLessons.ToString(),
+                    lesson.DurationLessons.ToString() + " H",
+                    lesson.placeDispo.ToString(),
+                    nameMonitor,
+                    //lesson.PriceLessons.ToString(),
+                });;
+                lvi.Tag = lesson;
+                main_lesson_listview.Items.Add(lvi);
+            }
+
+            main_lesson_inputMoniteur.DataSource = monitorManager.AllMonitor();
+            main_lesson_inputMoniteur.DisplayMember = "CompletName";
+            main_lesson_inputMoniteur.ValueMember = "IdMonitors";
+
+        }
         #endregion
 
 
@@ -206,5 +249,7 @@ namespace projetSurf.Pages
         #endregion
 
         #endregion
+
+        
     }
 }

@@ -91,5 +91,28 @@ namespace projetSurf.Manager
             list = list.OrderBy(f => f.DayLessons).ThenBy(f => f.StartHourLessons);
             return list.ToList();
         }
+
+        public List<Lesson> AllLessonsInProgressTOP3()
+        {
+            //DateTime today = DateTime.Now;
+            //var list = Context.Lessons.AsQueryable();
+            //list = list.Where(f => f.DateStartLessons.AddDays(f.NumberLessons * 7) >= today);
+            //list = list.Min(f => f.NmbMaxLessons);
+            //list = list.OrderBy(f => f.DayLessons).ThenBy(f => f.StartHourLessons);
+            //return list.ToList();
+
+            //var list = Context.Performs
+            //    .FromSqlRaw("")
+            //    .ToList();
+
+            //return list;
+
+            DateTime today = DateTime.Now;
+            var list = Context.Lessons.AsQueryable();
+            list = list.Where(f => f.DateStartLessons.AddDays(f.NumberLessons * 7) >= today);
+            list = list.OrderBy(f => f.placeDispo).Take(3);
+            return list.ToList();
+
+        }
     }
 }

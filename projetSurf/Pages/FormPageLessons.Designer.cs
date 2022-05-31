@@ -63,6 +63,8 @@ namespace projetSurf.Pages
             this.main_lesson_inputDuration = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.main_lesson_inputMoniteur = new System.Windows.Forms.ComboBox();
+            this.main_lesson_btn_top3 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -456,12 +458,36 @@ namespace projetSurf.Pages
             this.main_lesson_inputMoniteur.Size = new System.Drawing.Size(152, 28);
             this.main_lesson_inputMoniteur.TabIndex = 85;
             // 
+            // main_lesson_btn_top3
+            // 
+            this.main_lesson_btn_top3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_lesson_btn_top3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_lesson_btn_top3.Location = new System.Drawing.Point(379, 392);
+            this.main_lesson_btn_top3.Margin = new System.Windows.Forms.Padding(2);
+            this.main_lesson_btn_top3.Name = "main_lesson_btn_top3";
+            this.main_lesson_btn_top3.Size = new System.Drawing.Size(170, 34);
+            this.main_lesson_btn_top3.TabIndex = 86;
+            this.main_lesson_btn_top3.Text = "TOP3";
+            this.main_lesson_btn_top3.UseVisualStyleBackColor = true;
+            this.main_lesson_btn_top3.Click += new System.EventHandler(this.main_lesson_btn_top3_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(275, 431);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 94);
+            this.listBox1.TabIndex = 87;
+            // 
             // FormPageLessons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1195, 581);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.main_lesson_btn_top3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.main_lesson_inputDuration);
             this.Controls.Add(this.main_lesson_inputStartHour);
@@ -540,5 +566,7 @@ namespace projetSurf.Pages
         protected System.Windows.Forms.DateTimePicker main_lesson_inputDuration;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox main_lesson_inputMoniteur;
+        private System.Windows.Forms.Button main_lesson_btn_top3;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

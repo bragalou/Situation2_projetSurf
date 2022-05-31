@@ -19,12 +19,28 @@ namespace projetSurf.Manager
             return null;
         }
 
-        public bool EditDo(Do inscrit)
-        {
-            Context.Entry(inscrit).State = EntityState.Modified;
-            return (Context.SaveChanges() > 0);
+        //public bool EditDo(Do inscrit)
+        //{
+        //    Context.Entry(inscrit).State = EntityState.Modified;
+        //    return (Context.SaveChanges() > 0);
 
+        //}
+
+
+
+        public bool REmove(int idC, int idL)
+        {
+            var element = Context.Dos.Where(f => f.IdClients == idC && f.IdLessons == idL).FirstOrDefault();
+            if (element != null)
+            {
+                Context.Dos.Remove(element);
+                return (Context.SaveChanges() > 0);
+            }
+            return false;
+            
         }
+
+
 
         // ----- FIND -----
         public List<Do> FindLessonsByStudent(int id)
