@@ -27,7 +27,6 @@ namespace projetSurf.Models
             PriceLessons = priceLessons;
             LevelLessons = levelLessons;
         }
-
         public int IdLessons { get; set; }
         public string NameLessons { get; set; }
         public DateTime DateStartLessons { get; set; }
@@ -38,6 +37,7 @@ namespace projetSurf.Models
         public int NmbMaxLessons { get; set; }
         public float PriceLessons { get; set; }
         public string LevelLessons { get; set; }
+        public int FreePlaceLessons { get; set; }
 
         public virtual ICollection<Do> Dos { get; set; }
         public virtual ICollection<Perform> Performs { get; set; }

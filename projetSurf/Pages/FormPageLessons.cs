@@ -112,7 +112,39 @@ namespace projetSurf.Pages
         }
         private void main_lesson_btn_update_Click(object sender, EventArgs e)
         {
+            if (lessonSelected is null)
+            {
+                MessageBox.Show("Aucun client sélectionné");
+                return;
+            }
+            else
+            {
+                Lesson oldLesson = lessonManager.FindUniqueExactLessonByNameOBJ(main_lesson_inputName.Text);
+                int nmbInscrit = oldLesson.NmbMaxLessons - oldLesson.FreePlaceLessons;
 
+                if ((int)main_lesson_inputNmbMax.Value >= nmbInscrit)
+                {
+                    lessonSelected.NameLessons = main_lesson_inputName.Text;
+                    lessonSelected.DateStartLessons = main_lesson_inputDateStart.Value;
+                    lessonSelected.DayLessons = main_lesson_inputDay.Text;
+                    lessonSelected.NumberLessons = (int)main_lesson_inputNumber.Value;
+                    lessonSelected.LevelLessons = main_lesson_inputLevel.Text;
+                    lessonSelected.StartHourLessons = main_lesson_inputStartHour.Value.TimeOfDay;
+                    lessonSelected.DurationLessons = main_lesson_inputDuration.Value.TimeOfDay;
+                    lessonSelected.NmbMaxLessons = (int)main_lesson_inputNmbMax.Value;
+                    lessonSelected.PriceLessons = (float)main_lesson_inputPrice.Value;
+
+                    lessonManager.EditLesson(lessonSelected);
+
+                    LessonResetInput();
+                    LessonReloadData(lessonManager.AllLessonsInProgress());
+                }
+                else
+                {
+                    MessageBox.Show("la limite de place est en dessous du nombre d'inscrit");
+                    return;
+                }
+            }
         }
         private void main_lesson_btn_delete_Click(object sender, EventArgs e)
         {
@@ -127,7 +159,7 @@ namespace projetSurf.Pages
                 //{
                     //Perform perform = new Perform(monitor[0].IdMonitors, lessonSelected.IdLessons);
                     Perform perform = new Perform((int)main_lesson_inputMoniteur.SelectedValue, lessonSelected.IdLessons);
-                    performManager.DeletePerfom(perform);
+                    //performManager.DeletePerfom(perform);
                 //}
 
                 lessonManager.DeleteLesson(lessonSelected);
@@ -156,7 +188,7 @@ namespace projetSurf.Pages
             main_lesson_listview.Items.Clear();
             foreach (Lesson lesson in list)
             {
-                string nmbPlaceDispo = (lesson.NmbMaxLessons - doManager.FindStudentByLesson(lesson.IdLessons).Count()).ToString();
+                //string nmbPlaceDispo = (lesson.NmbMaxLessons - doManager.FindStudentByLesson(lesson.IdLessons).Count()).ToString();
                 var monitor = performManager.FindMonitorByLesson(lesson.IdLessons);
 
                 string nameMonitor = "aucun";
@@ -171,10 +203,10 @@ namespace projetSurf.Pages
                     lesson.StartHourLessons.ToString().ToUpper() + " H",
                     lesson.NameLessons.ToString(),
                     lesson.DurationLessons.ToString() + " H",
-                    nmbPlaceDispo,
+                    lesson.FreePlaceLessons.ToString(),
                     nameMonitor,
                     //lesson.PriceLessons.ToString(),
-                });
+                }); ;
                 lvi.Tag = lesson;
                 main_lesson_listview.Items.Add(lvi);
             }

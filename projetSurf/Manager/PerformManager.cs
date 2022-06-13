@@ -21,13 +21,13 @@ namespace projetSurf.Manager
             return null;
         }
 
-        // ----- DELETE -----
-        public bool DeletePerfom(Perform perform)
+        // ----- REmove -----
+        public bool RemovePerform(int idMonitor, int idLesson)
         {
-            if (perform != null)
+            var relation = Context.Performs.Where(f => f.IdMonitors == idMonitor && f.IdLessons == idLesson).FirstOrDefault();
+            if (relation != null)
             {
-                Context.Entry(perform).State = EntityState.Detached;
-                Context.Performs.Remove(perform);
+                Context.Performs.Remove(relation);
                 return (Context.SaveChanges() > 0);
             }
             return false;

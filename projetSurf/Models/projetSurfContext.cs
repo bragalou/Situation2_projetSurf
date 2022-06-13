@@ -153,6 +153,10 @@ namespace projetSurf.Models
                     .HasColumnType("time")
                     .HasColumnName("duration_lessons");
 
+                entity.Property(e => e.FreePlaceLessons)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("freePlace_lessons");
+
                 entity.Property(e => e.LevelLessons)
                     .IsRequired()
                     .HasMaxLength(20)
@@ -171,8 +175,7 @@ namespace projetSurf.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("number_lessons");
 
-                entity.Property(e => e.PriceLessons)
-                    .HasColumnName("price_lessons");
+                entity.Property(e => e.PriceLessons).HasColumnName("price_lessons");
 
                 entity.Property(e => e.StartHourLessons)
                     .HasColumnType("time")

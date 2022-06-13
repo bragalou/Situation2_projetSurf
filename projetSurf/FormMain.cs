@@ -55,10 +55,15 @@ namespace projetSurf
             MainAffichageStudent();
             LoadMainForm(new FormPageStudents());
         }
-        private void main_btnNav_material_Click(object sender, EventArgs e)
+        private void main_btnNav_board_Click(object sender, EventArgs e)
         {
             MainAffichageMaterial();
-            LoadMainForm(new FormPageMaterials());
+            LoadMainForm(new FormPageBoards());
+        }
+        private void main_btnNav_wetsuit_Click(object sender, EventArgs e)
+        {
+            MainAffichageWetsuit();
+            LoadMainForm(new FormPageWetsuits());
         }
         private void main_btnNav_lesson_Click(object sender, EventArgs e)
         {
@@ -78,9 +83,10 @@ namespace projetSurf
         {
             main_indicator_client.Hide();
             main_indicator_lesson.Hide();
-            main_indicator_material.Hide();
+            main_indicator_board.Hide();
             main_indicator_monitor.Hide();
             main_indicator_student.Hide();
+            main_indicator_wetsuit.Hide();
             main_indicator_dashboard.Show();
             main_indicator_dashboard.BringToFront();
         }
@@ -88,9 +94,10 @@ namespace projetSurf
         {
             main_indicator_dashboard.Hide();
             main_indicator_lesson.Hide();
-            main_indicator_material.Hide();
+            main_indicator_board.Hide();
             main_indicator_monitor.Hide();
             main_indicator_student.Hide();
+            main_indicator_wetsuit.Hide();
             main_indicator_client.Show();
             main_indicator_client.BringToFront();
         }
@@ -98,9 +105,10 @@ namespace projetSurf
         {
             main_indicator_dashboard.Hide();
             main_indicator_lesson.Hide();
-            main_indicator_material.Hide();
+            main_indicator_board.Hide();
             main_indicator_monitor.Hide();
             main_indicator_client.Hide();
+            main_indicator_wetsuit.Hide();
             main_indicator_student.Show();
             main_indicator_student.BringToFront();
         }
@@ -111,15 +119,17 @@ namespace projetSurf
             main_indicator_student.Hide();
             main_indicator_monitor.Hide();
             main_indicator_client.Hide();
-            main_indicator_material.Show();
-            main_indicator_material.BringToFront();
+            main_indicator_wetsuit.Hide();
+            main_indicator_board.Show();
+            main_indicator_board.BringToFront();
         }
         private void MainAffichageLesson()
         {
             main_indicator_dashboard.Hide();
             main_indicator_student.Hide();
-            main_indicator_material.Hide();
+            main_indicator_board.Hide();
             main_indicator_monitor.Hide();
+            main_indicator_wetsuit.Hide();
             main_indicator_client.Hide();
             main_indicator_lesson.Show();
             main_indicator_lesson.BringToFront();
@@ -128,14 +138,25 @@ namespace projetSurf
         {
             main_indicator_dashboard.Hide();
             main_indicator_lesson.Hide();
-            main_indicator_material.Hide();
+            main_indicator_board.Hide();
             main_indicator_student.Hide();
+            main_indicator_wetsuit.Hide();
             main_indicator_client.Hide();
             main_indicator_monitor.Show();
             main_indicator_monitor.BringToFront();
         }
+        private void MainAffichageWetsuit()
+        {
+            main_indicator_dashboard.Hide();
+            main_indicator_lesson.Hide();
+            main_indicator_board.Hide();
+            main_indicator_student.Hide();
+            main_indicator_client.Hide();
+            main_indicator_monitor.Hide();
+            main_indicator_wetsuit.Show();
+            main_indicator_wetsuit.BringToFront();
+        }
+
         #endregion
-
-
     }
 }

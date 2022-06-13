@@ -74,6 +74,13 @@ namespace projetSurf.Manager
             var list = Context.Lessons.Where(p => p.NameLessons.Equals(name)).Take(1);
             return list.ToList();
         }
+        public Lesson FindUniqueExactLessonByNameOBJ(string name)
+        {
+            var lesson = Context.Lessons.Where(p => p.NameLessons.Equals(name)).FirstOrDefault();
+            if (lesson != null)
+                return lesson;
+            return null;
+        }
 
 
         public List<Lesson> AllLessons()

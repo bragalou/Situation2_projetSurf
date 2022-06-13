@@ -31,14 +31,15 @@ namespace projetSurf.Pages
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPageStudents));
             this.panel9 = new System.Windows.Forms.Panel();
+            this.main_student_updateLesson = new System.Windows.Forms.Button();
+            this.main_student_listviewlesson = new System.Windows.Forms.ListView();
+            this.main_student_listviewPerson = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.main_student_labelNameStudent = new System.Windows.Forms.Label();
             this.main_student_labelNameStudentTitle = new System.Windows.Forms.Label();
-            this.main_student_listviewlesson = new System.Windows.Forms.ListView();
-            this.main_student_listviewPerson = new System.Windows.Forms.ListView();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.main_student_inputFirstname = new System.Windows.Forms.TextBox();
@@ -60,6 +61,8 @@ namespace projetSurf.Pages
             this.main_student_inputCP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.main_student_inputLesson = new System.Windows.Forms.ComboBox();
+            this.mySqlCommand1 = new MySqlConnector.MySqlCommand();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel9.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -69,77 +72,51 @@ namespace projetSurf.Pages
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.panel1);
+            this.panel9.Controls.Add(this.main_student_updateLesson);
             this.panel9.Controls.Add(this.main_student_listviewlesson);
             this.panel9.Controls.Add(this.main_student_listviewPerson);
+            this.panel9.Controls.Add(this.panel1);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(595, 50);
+            this.panel9.Location = new System.Drawing.Point(695, 50);
             this.panel9.Margin = new System.Windows.Forms.Padding(2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(600, 531);
+            this.panel9.Size = new System.Drawing.Size(500, 531);
             this.panel9.TabIndex = 11;
             // 
-            // panel1
+            // main_student_updateLesson
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.main_student_labelNameStudent);
-            this.panel1.Controls.Add(this.main_student_labelNameStudentTitle);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(300, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 74);
-            this.panel1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 15);
-            this.label2.TabIndex = 55;
-            this.label2.Text = "->";
-            // 
-            // main_student_labelNameStudent
-            // 
-            this.main_student_labelNameStudent.AutoSize = true;
-            this.main_student_labelNameStudent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.main_student_labelNameStudent.Location = new System.Drawing.Point(37, 37);
-            this.main_student_labelNameStudent.Name = "main_student_labelNameStudent";
-            this.main_student_labelNameStudent.Size = new System.Drawing.Size(17, 17);
-            this.main_student_labelNameStudent.TabIndex = 54;
-            this.main_student_labelNameStudent.Text = "...";
-            // 
-            // main_student_labelNameStudentTitle
-            // 
-            this.main_student_labelNameStudentTitle.AutoSize = true;
-            this.main_student_labelNameStudentTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.main_student_labelNameStudentTitle.Location = new System.Drawing.Point(11, 14);
-            this.main_student_labelNameStudentTitle.Name = "main_student_labelNameStudentTitle";
-            this.main_student_labelNameStudentTitle.Size = new System.Drawing.Size(121, 17);
-            this.main_student_labelNameStudentTitle.TabIndex = 53;
-            this.main_student_labelNameStudentTitle.Text = "Liste des cours de :";
+            this.main_student_updateLesson.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.main_student_updateLesson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_student_updateLesson.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_student_updateLesson.Location = new System.Drawing.Point(0, 486);
+            this.main_student_updateLesson.Margin = new System.Windows.Forms.Padding(2);
+            this.main_student_updateLesson.Name = "main_student_updateLesson";
+            this.main_student_updateLesson.Size = new System.Drawing.Size(200, 45);
+            this.main_student_updateLesson.TabIndex = 88;
+            this.main_student_updateLesson.Text = "Modifier ses cours";
+            this.main_student_updateLesson.UseVisualStyleBackColor = true;
+            this.main_student_updateLesson.Click += new System.EventHandler(this.main_student_updateLesson_Click);
             // 
             // main_student_listviewlesson
             // 
-            this.main_student_listviewlesson.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.main_student_listviewlesson.FullRowSelect = true;
             this.main_student_listviewlesson.GridLines = true;
             this.main_student_listviewlesson.HideSelection = false;
-            this.main_student_listviewlesson.Location = new System.Drawing.Point(300, 74);
+            this.main_student_listviewlesson.Location = new System.Drawing.Point(0, 84);
             this.main_student_listviewlesson.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_listviewlesson.Name = "main_student_listviewlesson";
-            this.main_student_listviewlesson.Size = new System.Drawing.Size(300, 457);
+            this.main_student_listviewlesson.Size = new System.Drawing.Size(200, 409);
             this.main_student_listviewlesson.TabIndex = 1;
             this.main_student_listviewlesson.UseCompatibleStateImageBehavior = false;
             this.main_student_listviewlesson.View = System.Windows.Forms.View.Details;
             // 
             // main_student_listviewPerson
             // 
-            this.main_student_listviewPerson.Dock = System.Windows.Forms.DockStyle.Left;
+            this.main_student_listviewPerson.Dock = System.Windows.Forms.DockStyle.Right;
             this.main_student_listviewPerson.FullRowSelect = true;
             this.main_student_listviewPerson.GridLines = true;
             this.main_student_listviewPerson.HideSelection = false;
-            this.main_student_listviewPerson.Location = new System.Drawing.Point(0, 0);
+            this.main_student_listviewPerson.Location = new System.Drawing.Point(200, 0);
             this.main_student_listviewPerson.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_listviewPerson.Name = "main_student_listviewPerson";
             this.main_student_listviewPerson.Size = new System.Drawing.Size(300, 531);
@@ -148,9 +125,50 @@ namespace projetSurf.Pages
             this.main_student_listviewPerson.View = System.Windows.Forms.View.Details;
             this.main_student_listviewPerson.DoubleClick += new System.EventHandler(this.main_student_listviewPerson_DoubleClick);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.main_student_labelNameStudent);
+            this.panel1.Controls.Add(this.main_student_labelNameStudentTitle);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 88);
+            this.panel1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(12, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 20);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "->";
+            // 
+            // main_student_labelNameStudent
+            // 
+            this.main_student_labelNameStudent.AutoSize = true;
+            this.main_student_labelNameStudent.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_student_labelNameStudent.Location = new System.Drawing.Point(38, 45);
+            this.main_student_labelNameStudent.Name = "main_student_labelNameStudent";
+            this.main_student_labelNameStudent.Size = new System.Drawing.Size(18, 20);
+            this.main_student_labelNameStudent.TabIndex = 54;
+            this.main_student_labelNameStudent.Text = "...";
+            // 
+            // main_student_labelNameStudentTitle
+            // 
+            this.main_student_labelNameStudentTitle.AutoSize = true;
+            this.main_student_labelNameStudentTitle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_student_labelNameStudentTitle.Location = new System.Drawing.Point(11, 14);
+            this.main_student_labelNameStudentTitle.Name = "main_student_labelNameStudentTitle";
+            this.main_student_labelNameStudentTitle.Size = new System.Drawing.Size(133, 20);
+            this.main_student_labelNameStudentTitle.TabIndex = 53;
+            this.main_student_labelNameStudentTitle.Text = "Liste des cours de :";
+            // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Controls.Add(this.panel2);
             this.panel10.Controls.Add(this.pictureBox3);
             this.panel10.Controls.Add(this.label6);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
@@ -160,15 +178,15 @@ namespace projetSurf.Pages
             this.panel10.Size = new System.Drawing.Size(1195, 50);
             this.panel10.TabIndex = 10;
             // 
-            // panel11
+            // panel2
             // 
-            this.panel11.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 49);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1195, 1);
-            this.panel11.TabIndex = 2;
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 49);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1195, 1);
+            this.panel2.TabIndex = 3;
             // 
             // pictureBox3
             // 
@@ -242,7 +260,7 @@ namespace projetSurf.Pages
             this.main_student_btn_reset.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_btn_reset.Name = "main_student_btn_reset";
             this.main_student_btn_reset.Size = new System.Drawing.Size(99, 27);
-            this.main_student_btn_reset.TabIndex = 40;
+            this.main_student_btn_reset.TabIndex = 0;
             this.main_student_btn_reset.Text = "Reset";
             this.main_student_btn_reset.UseVisualStyleBackColor = false;
             this.main_student_btn_reset.Click += new System.EventHandler(this.main_student_btn_reset_Click);
@@ -256,7 +274,7 @@ namespace projetSurf.Pages
             this.main_student_btn_recherche.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_btn_recherche.Name = "main_student_btn_recherche";
             this.main_student_btn_recherche.Size = new System.Drawing.Size(99, 27);
-            this.main_student_btn_recherche.TabIndex = 39;
+            this.main_student_btn_recherche.TabIndex = 2;
             this.main_student_btn_recherche.Text = "Rechercher";
             this.main_student_btn_recherche.UseVisualStyleBackColor = false;
             this.main_student_btn_recherche.Click += new System.EventHandler(this.main_student_btn_recherche_Click);
@@ -299,7 +317,7 @@ namespace projetSurf.Pages
             this.main_student_inputDate.Location = new System.Drawing.Point(127, 240);
             this.main_student_inputDate.Name = "main_student_inputDate";
             this.main_student_inputDate.Size = new System.Drawing.Size(152, 27);
-            this.main_student_inputDate.TabIndex = 44;
+            this.main_student_inputDate.TabIndex = 16;
             // 
             // main_student_btn_update
             // 
@@ -309,7 +327,7 @@ namespace projetSurf.Pages
             this.main_student_btn_update.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_btn_update.Name = "main_student_btn_update";
             this.main_student_btn_update.Size = new System.Drawing.Size(170, 34);
-            this.main_student_btn_update.TabIndex = 47;
+            this.main_student_btn_update.TabIndex = 18;
             this.main_student_btn_update.Text = "Modifier l\'élève";
             this.main_student_btn_update.UseVisualStyleBackColor = true;
             this.main_student_btn_update.Click += new System.EventHandler(this.main_student_btn_update_Click);
@@ -322,7 +340,7 @@ namespace projetSurf.Pages
             this.main_student_btn_ajouter.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_btn_ajouter.Name = "main_student_btn_ajouter";
             this.main_student_btn_ajouter.Size = new System.Drawing.Size(170, 34);
-            this.main_student_btn_ajouter.TabIndex = 46;
+            this.main_student_btn_ajouter.TabIndex = 17;
             this.main_student_btn_ajouter.Text = "Ajouter l\'elève";
             this.main_student_btn_ajouter.UseVisualStyleBackColor = true;
             this.main_student_btn_ajouter.Click += new System.EventHandler(this.main_student_btn_ajouter_Click);
@@ -335,7 +353,7 @@ namespace projetSurf.Pages
             this.main_student_btn_delete.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_btn_delete.Name = "main_student_btn_delete";
             this.main_student_btn_delete.Size = new System.Drawing.Size(170, 34);
-            this.main_student_btn_delete.TabIndex = 48;
+            this.main_student_btn_delete.TabIndex = 19;
             this.main_student_btn_delete.Text = "Supprimer l\'élève";
             this.main_student_btn_delete.UseVisualStyleBackColor = true;
             this.main_student_btn_delete.Click += new System.EventHandler(this.main_student_btn_delete_Click);
@@ -360,7 +378,7 @@ namespace projetSurf.Pages
             this.main_student_inputTel.MaxLength = 10;
             this.main_student_inputTel.Name = "main_student_inputTel";
             this.main_student_inputTel.Size = new System.Drawing.Size(152, 27);
-            this.main_student_inputTel.TabIndex = 49;
+            this.main_student_inputTel.TabIndex = 14;
             // 
             // label1
             // 
@@ -382,18 +400,19 @@ namespace projetSurf.Pages
             this.main_student_inputCP.MaxLength = 5;
             this.main_student_inputCP.Name = "main_student_inputCP";
             this.main_student_inputCP.Size = new System.Drawing.Size(152, 27);
-            this.main_student_inputCP.TabIndex = 51;
+            this.main_student_inputCP.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(290, 245);
+            this.label3.Location = new System.Drawing.Point(34, 410);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 20);
             this.label3.TabIndex = 86;
             this.label3.Text = "Inscrit à  :";
+            this.label3.Visible = false;
             // 
             // main_student_inputLesson
             // 
@@ -403,10 +422,28 @@ namespace projetSurf.Pages
             "Débutant",
             "Intermédiaire",
             "Pro"});
-            this.main_student_inputLesson.Location = new System.Drawing.Point(369, 242);
+            this.main_student_inputLesson.Location = new System.Drawing.Point(113, 407);
             this.main_student_inputLesson.Name = "main_student_inputLesson";
             this.main_student_inputLesson.Size = new System.Drawing.Size(152, 28);
             this.main_student_inputLesson.TabIndex = 87;
+            this.main_student_inputLesson.Visible = false;
+            // 
+            // mySqlCommand1
+            // 
+            this.mySqlCommand1.CommandTimeout = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.Transaction = null;
+            this.mySqlCommand1.UpdatedRowSource = System.Data.UpdateRowSource.None;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 580);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(695, 1);
+            this.panel7.TabIndex = 88;
             // 
             // FormPageStudents
             // 
@@ -414,6 +451,7 @@ namespace projetSurf.Pages
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1195, 581);
+            this.Controls.Add(this.panel7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.main_student_inputLesson);
@@ -433,6 +471,7 @@ namespace projetSurf.Pages
             this.Controls.Add(this.main_student_inputName);
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPageStudents";
             this.Text = "FormPageStudents";
             this.Load += new System.EventHandler(this.FormPageStudents_Load);
@@ -453,7 +492,6 @@ namespace projetSurf.Pages
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ListView main_student_listviewPerson;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox main_student_inputFirstname;
@@ -480,5 +518,9 @@ namespace projetSurf.Pages
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox main_student_inputLesson;
+        private MySqlConnector.MySqlCommand mySqlCommand1;
+        private System.Windows.Forms.Button main_student_updateLesson;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel2;
     }
 }

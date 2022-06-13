@@ -19,12 +19,18 @@ namespace projetSurf.Manager
             return null;
         }
 
-        public bool EditDo(Do inscrit)
+        // ----- REMOVE -----
+        public bool DeleteDo(int idClient, int idLesson)
         {
-            Context.Entry(inscrit).State = EntityState.Modified;
-            return (Context.SaveChanges() > 0);
-
+            var relation = Context.Dos.Where(f => f.IdClients == idClient && f.IdLessons == idLesson).FirstOrDefault();
+            if (relation != null)
+            {
+                Context.Dos.Remove(relation);
+                return (Context.SaveChanges() > 0);
+            }
+            return false;
         }
+
 
         // ----- FIND -----
         public List<Do> FindLessonsByStudent(int id)
@@ -39,11 +45,20 @@ namespace projetSurf.Manager
             list = list.Where(f => f.IdLessons.Equals(id));
             return list.ToList();
         }
+
         public int NmbStudentByLesson(int id)
         {
             var list = Context.Dos.Include(f => f.IdClientsNavigation).AsQueryable();
             list = list.Where(f => f.IdLessons.Equals(id));
             return list.ToList().Count();
+        }
+
+        public Do FindRelation(int idClient, int idLesson)
+        {
+            var relation = Context.Dos.Where(f => f.IdClients == idClient && f.IdLessons == idLesson).FirstOrDefault();
+            if (relation != null)
+                return relation;
+            return null;
         }
     }
 }

@@ -12,11 +12,6 @@ namespace projetSurf.Models
             Performs = new HashSet<Perform>();
         }
 
-        public string CompletName
-        {
-            get { return FirstnameMonitors + " " +NameMonitors; }
-        }
-
         public Monitor(string nameMonitors, string firstnameMonitors, DateTime dateBirthMonitors, string phoneMonitor, bool administratorMonitor)
         {
             NameMonitors = nameMonitors;

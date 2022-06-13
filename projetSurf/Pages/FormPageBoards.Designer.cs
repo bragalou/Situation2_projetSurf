@@ -1,7 +1,7 @@
 ﻿
 namespace projetSurf.Pages
 {
-    partial class FormPageMaterials
+    partial class FormPageBoards
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace projetSurf.Pages
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPageMaterials));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPageBoards));
             this.panel12 = new System.Windows.Forms.Panel();
             this.main_materiel_listview = new System.Windows.Forms.ListView();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -117,9 +117,9 @@ namespace projetSurf.Pages
             this.label9.Location = new System.Drawing.Point(50, 13);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(188, 25);
+            this.label9.Size = new System.Drawing.Size(191, 25);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Gestion du matériels";
+            this.label9.Text = "Gestion des planches";
             // 
             // textBox4
             // 
@@ -245,7 +245,7 @@ namespace projetSurf.Pages
             this.main_material_btn_delete.Text = "Supprimer le materiel";
             this.main_material_btn_delete.UseVisualStyleBackColor = true;
             // 
-            // FormPageMaterials
+            // FormPageBoards
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -262,8 +262,9 @@ namespace projetSurf.Pages
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormPageMaterials";
-            this.Text = "FormMaterials";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FormPageBoards";
+            this.Text = "FormBoards";
             this.panel12.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();

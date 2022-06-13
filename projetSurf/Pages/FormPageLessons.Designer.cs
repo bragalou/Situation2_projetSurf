@@ -489,6 +489,7 @@ namespace projetSurf.Pages
             this.Controls.Add(this.main_lesson_inputDay);
             this.Controls.Add(this.main_lesson_inputMoniteur);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPageLessons";
             this.Text = "FormPageLessons";
             this.Load += new System.EventHandler(this.FormPageLessons_Load);

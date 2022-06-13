@@ -12,7 +12,7 @@ namespace projetSurf.Pages
         DoManager DoManager = new DoManager();
         ClientManager ClientManager = new ClientManager();
         LessonManager lessonManager = new LessonManager();
-        private Student StudentSelected;
+        public Student studentSelected;
 
         public FormPageStudents()
         {
@@ -27,8 +27,7 @@ namespace projetSurf.Pages
 
         #region ##### Student ######
         #region ----- Student Fonction -----
-
-        //Recherche
+        // ----- Recherche
         private void main_student_btn_reset_Click(object sender, EventArgs e)
         {
             StudentResetInput();
@@ -40,21 +39,22 @@ namespace projetSurf.Pages
             StudentReloadData(list);
         }
 
-        //Select
+        // ----- Select
         private void main_student_listviewPerson_DoubleClick(object sender, EventArgs e)
         {
             ListView.SelectedListViewItemCollection selected = main_student_listviewPerson.SelectedItems;
             if (selected.Count == 1)
             {
-                StudentSelected = selected[0].Tag as Student;
+                studentSelected = selected[0].Tag as Student;
 
-                main_student_inputFirstname.Text = StudentSelected.FirstnameClients;
-                main_student_inputName.Text = StudentSelected.NameClients;
-                main_student_inputTel.Text = StudentSelected.PhoneStudents;
-                main_student_inputCP.Text = StudentSelected.PostalCodeStudents;
-                main_student_inputDate.Value = StudentSelected.DateBirthStudents;
+                main_student_inputFirstname.Text = studentSelected.FirstnameClients;
+                main_student_inputName.Text = studentSelected.NameClients;
+                main_student_inputTel.Text = studentSelected.PhoneStudents;
+                main_student_inputCP.Text = studentSelected.PostalCodeStudents;
+                main_student_inputDate.Value = studentSelected.DateBirthStudents;
 
-                var inscrit = DoManager.FindLessonsByStudent(StudentSelected.IdClients);
+                //ListBox (OLD)
+                var inscrit = DoManager.FindLessonsByStudent(studentSelected.IdClients);
                 string nameLesson = "coursP1";
                 if (inscrit.Count > 0)
                 {
@@ -62,12 +62,15 @@ namespace projetSurf.Pages
                 }
                 main_student_inputLesson.Text = nameLesson;
 
-                main_student_labelNameStudent.Text = StudentSelected.FirstnameClients + StudentSelected.NameClients;
-                StudentLessonReloadData(DoManager.FindLessonsByStudent(StudentSelected.IdClients));
+                //affichage du name selectionne
+                main_student_labelNameStudent.Text = studentSelected.FirstnameClients + " " + studentSelected.NameClients;
+                StudentLessonReloadData(DoManager.FindLessonsByStudent(studentSelected.IdClients));
+
+
             }
         }
 
-        //Gestion (add, update, delete 
+        // ----- Gestion (add, update, delete) 
         private void main_student_btn_ajouter_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(main_student_inputFirstname.Text) || string.IsNullOrEmpty(main_student_inputName.Text) || string.IsNullOrEmpty(main_student_inputTel.Text) || string.IsNullOrEmpty(main_student_inputCP.Text) || string.IsNullOrEmpty(main_student_inputDate.Value.ToString()))
@@ -91,21 +94,19 @@ namespace projetSurf.Pages
         }
         private void main_student_btn_update_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(main_student_inputFirstname.Text) || string.IsNullOrEmpty(main_student_inputName.Text) || string.IsNullOrEmpty(main_student_inputTel.Text) || string.IsNullOrEmpty(main_student_inputCP.Text) || string.IsNullOrEmpty(main_student_inputDate.Value.ToString()) || StudentSelected == null)
+            if (string.IsNullOrEmpty(main_student_inputFirstname.Text) || string.IsNullOrEmpty(main_student_inputName.Text) || string.IsNullOrEmpty(main_student_inputTel.Text) || string.IsNullOrEmpty(main_student_inputCP.Text) || string.IsNullOrEmpty(main_student_inputDate.Value.ToString()) || studentSelected == null)
             {
                 MessageBox.Show("Aucun client sélectionné");
+                return;
             }
             else
             {
-                StudentSelected.FirstnameClients = main_student_inputFirstname.Text;
-                StudentSelected.NameClients = main_student_inputName.Text;
-                StudentSelected.PhoneStudents = main_student_inputTel.Text;
-                StudentSelected.PostalCodeStudents = main_student_inputCP.Text;
-                StudentSelected.DateBirthStudents = main_student_inputDate.Value;
-                Student studentAdd = StudentManager.EditStudent(StudentSelected);
-
-                Do inscrit = new Do((int)main_student_inputLesson.SelectedValue, studentAdd.IdClients);
-                DoManager.EditDo(inscrit);
+                studentSelected.FirstnameClients = main_student_inputFirstname.Text;
+                studentSelected.NameClients = main_student_inputName.Text;
+                studentSelected.PhoneStudents = main_student_inputTel.Text;
+                studentSelected.PostalCodeStudents = main_student_inputCP.Text;
+                studentSelected.DateBirthStudents = main_student_inputDate.Value;
+                Student studentAdd = StudentManager.EditStudent(studentSelected);
 
                 StudentResetInput();
                 StudentReloadData(StudentManager.AllStudents());
@@ -114,30 +115,53 @@ namespace projetSurf.Pages
 
         private void main_student_btn_delete_Click(object sender, EventArgs e)
         {
-            if (StudentSelected is null)
+            if (studentSelected is null)
             {
                 MessageBox.Show("Aucun employé sélectionné");
             }
             else
             {
-                StudentManager.DeleteStudent(StudentSelected);
+                // on cherche si il exite et supprime la/les relation(s) dans la table Do (= l evele est inscrit a un cours)
+                List<Do> relation = DoManager.FindLessonsByStudent(studentSelected.IdClients);
+                if (relation.Count != 0)
+                {
+                    foreach(Do uneRelation in relation)
+                    {
+                        DoManager.DeleteDo(uneRelation.IdClients, uneRelation.IdLessons);
+                    }
+                }
+                // on supprime l eleve
+                StudentManager.DeleteStudent(studentSelected);
+                // on supprimer le client qui correcpond a l eleve
+                Client client = new Client(studentSelected.IdClients , studentSelected.NameClients, studentSelected.FirstnameClients);
+                ClientManager.DeleteClient(client);
 
                 StudentResetInput();
                 StudentReloadData(StudentManager.AllStudents());
             }
         }
 
+        private void main_student_updateLesson_Click(object sender, EventArgs e)
+        {
+            if (studentSelected != null)
+            {
+                AddFormPageUpdateLesson addFormPageUpdateLesson = new AddFormPageUpdateLesson();
+                addFormPageUpdateLesson.nameStudent = studentSelected.FirstnameClients + " " + studentSelected.NameClients;
+                addFormPageUpdateLesson.idStudent = studentSelected.IdClients;
+                addFormPageUpdateLesson.ShowDialog();
+            }
+        }
         #endregion
 
 
         #region ----- Student Gestionnaire -----
 
-        //ListeView Student
+        // ----- ListeView Student
         private void StudentAffichageListeview()
         {
             main_student_listviewPerson.Columns.Clear();
-            main_student_listviewPerson.Columns.Add(new ColumnHeader() { Name = "Prenom", Text = "Prénom", Width = 150 });
-            main_student_listviewPerson.Columns.Add(new ColumnHeader() { Name = "Nom", Text = "Nom", Width = 150 });
+            main_student_listviewPerson.Columns.Add(new ColumnHeader() { Name = "Prenom", Text = "Prénom", Width = 148 });
+            main_student_listviewPerson.Columns.Add(new ColumnHeader() { Name = "Nom", Text = "Nom", Width = 148 });
         }
         private void StudentReloadData(List<Student> list)
         {
@@ -156,14 +180,21 @@ namespace projetSurf.Pages
             main_student_inputLesson.DataSource = lessonManager.AllLessons();
             main_student_inputLesson.DisplayMember = "NameLessons";
             main_student_inputLesson.ValueMember = "IdLessons";
+
+            //((ListBox)this.main_student_checkedBox).DataSource = lessonManager.AllLessons();
+            //((ListBox)this.main_student_checkedBox).DisplayMember = "NameLessons";
+            //((ListBox)this.main_student_checkedBox).ValueMember = "IdLessons";
+            //main_student_checkedBox.DataSource = lessonManager.AllLessons();
+            //main_student_checkedBox.DisplayMember = "NameLessons";
+            //main_student_checkedBox.ValueMember = "IdLessons";
         }
 
-        //ListeView Student Lesson
+        // ----- ListeView Student Lesson
         private void StudentLessonAffichageListeview()
         {
             main_student_listviewlesson.Columns.Clear();
-            main_student_listviewlesson.Columns.Add(new ColumnHeader() { Name = "Id", Text = "Id", Width = 50 });   //300 de long au max
-            main_student_listviewlesson.Columns.Add(new ColumnHeader() { Name = "Nom", Text = "Nom", Width = 150 });
+            main_student_listviewlesson.Columns.Add(new ColumnHeader() { Name = "Id", Text = "Id", Width = 49 });   //300 de long au max
+            main_student_listviewlesson.Columns.Add(new ColumnHeader() { Name = "Nom", Text = "Nom", Width = 146 });
         }
         private void StudentLessonReloadData(List<Do> list)
         {
@@ -180,15 +211,22 @@ namespace projetSurf.Pages
             }
         }
 
-        //Vider les champ
+        // ----- Vider les champ
         private void StudentResetInput()
         {
+            //vider les inputs
             main_student_inputFirstname.Text = "";
             main_student_inputName.Text = "";
             main_student_inputTel.Text = "";
             main_student_inputCP.Text = "";
             main_student_inputDate.Text = "";
-            StudentSelected = null;
+
+            //vider le listViws avec la liste des cours
+            main_student_labelNameStudent.Text = "";
+            main_student_listviewlesson.Items.Clear();
+
+            //supprimer l eleve selectionne
+            studentSelected = null;
         }
 
         #endregion
