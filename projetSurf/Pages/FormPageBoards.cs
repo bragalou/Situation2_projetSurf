@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace projetSurf.Pages
 {
-    public partial class FormPageMaterials : Form
+    public partial class FormPageBoards : Form
     {
-        public FormPageMaterials()
+        public FormPageBoards()
         {
             InitializeComponent();
         }

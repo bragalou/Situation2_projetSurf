@@ -35,7 +35,10 @@ namespace projetSurf
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.main_indicator_wetsuit = new System.Windows.Forms.Panel();
+            this.main_btnNav_wetsuit = new System.Windows.Forms.Button();
             this.main_indicator_dashboard = new System.Windows.Forms.Panel();
             this.main_btnNav_dashboard = new System.Windows.Forms.Button();
             this.main_btnNav_logout = new System.Windows.Forms.Button();
@@ -43,8 +46,8 @@ namespace projetSurf
             this.main_btnNav_monitor = new System.Windows.Forms.Button();
             this.main_indicator_lesson = new System.Windows.Forms.Panel();
             this.main_btnNav_lesson = new System.Windows.Forms.Button();
-            this.main_indicator_material = new System.Windows.Forms.Panel();
-            this.main_btnNav_material = new System.Windows.Forms.Button();
+            this.main_indicator_board = new System.Windows.Forms.Panel();
+            this.main_btnNav_board = new System.Windows.Forms.Button();
             this.main_indicator_student = new System.Windows.Forms.Panel();
             this.main_btnNav_student = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -106,7 +109,10 @@ namespace projetSurf
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.main_indicator_wetsuit);
+            this.panel2.Controls.Add(this.main_btnNav_wetsuit);
             this.panel2.Controls.Add(this.main_indicator_dashboard);
             this.panel2.Controls.Add(this.main_btnNav_dashboard);
             this.panel2.Controls.Add(this.main_btnNav_logout);
@@ -114,8 +120,8 @@ namespace projetSurf
             this.panel2.Controls.Add(this.main_btnNav_monitor);
             this.panel2.Controls.Add(this.main_indicator_lesson);
             this.panel2.Controls.Add(this.main_btnNav_lesson);
-            this.panel2.Controls.Add(this.main_indicator_material);
-            this.panel2.Controls.Add(this.main_btnNav_material);
+            this.panel2.Controls.Add(this.main_indicator_board);
+            this.panel2.Controls.Add(this.main_btnNav_board);
             this.panel2.Controls.Add(this.main_indicator_student);
             this.panel2.Controls.Add(this.main_btnNav_student);
             this.panel2.Controls.Add(this.label2);
@@ -128,6 +134,14 @@ namespace projetSurf
             this.panel2.Size = new System.Drawing.Size(189, 581);
             this.panel2.TabIndex = 1;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel6.Location = new System.Drawing.Point(35, 146);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(100, 1);
+            this.panel6.TabIndex = 21;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Control;
@@ -138,10 +152,40 @@ namespace projetSurf
             this.panel5.Size = new System.Drawing.Size(6, 581);
             this.panel5.TabIndex = 15;
             // 
+            // main_indicator_wetsuit
+            // 
+            this.main_indicator_wetsuit.BackColor = System.Drawing.Color.Teal;
+            this.main_indicator_wetsuit.Location = new System.Drawing.Point(0, 469);
+            this.main_indicator_wetsuit.Margin = new System.Windows.Forms.Padding(2);
+            this.main_indicator_wetsuit.Name = "main_indicator_wetsuit";
+            this.main_indicator_wetsuit.Size = new System.Drawing.Size(7, 35);
+            this.main_indicator_wetsuit.TabIndex = 20;
+            this.main_indicator_wetsuit.Visible = false;
+            // 
+            // main_btnNav_wetsuit
+            // 
+            this.main_btnNav_wetsuit.BackColor = System.Drawing.Color.White;
+            this.main_btnNav_wetsuit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.main_btnNav_wetsuit.FlatAppearance.BorderSize = 0;
+            this.main_btnNav_wetsuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_btnNav_wetsuit.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.main_btnNav_wetsuit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.main_btnNav_wetsuit.Location = new System.Drawing.Point(9, 469);
+            this.main_btnNav_wetsuit.Margin = new System.Windows.Forms.Padding(2);
+            this.main_btnNav_wetsuit.Name = "main_btnNav_wetsuit";
+            this.main_btnNav_wetsuit.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.main_btnNav_wetsuit.Size = new System.Drawing.Size(176, 35);
+            this.main_btnNav_wetsuit.TabIndex = 19;
+            this.main_btnNav_wetsuit.Text = "Combinaisons";
+            this.main_btnNav_wetsuit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.main_btnNav_wetsuit.UseVisualStyleBackColor = false;
+            this.main_btnNav_wetsuit.Visible = false;
+            this.main_btnNav_wetsuit.Click += new System.EventHandler(this.main_btnNav_wetsuit_Click);
+            // 
             // main_indicator_dashboard
             // 
             this.main_indicator_dashboard.BackColor = System.Drawing.Color.Teal;
-            this.main_indicator_dashboard.Location = new System.Drawing.Point(0, 91);
+            this.main_indicator_dashboard.Location = new System.Drawing.Point(0, 99);
             this.main_indicator_dashboard.Margin = new System.Windows.Forms.Padding(2);
             this.main_indicator_dashboard.Name = "main_indicator_dashboard";
             this.main_indicator_dashboard.Size = new System.Drawing.Size(7, 35);
@@ -155,12 +199,12 @@ namespace projetSurf
             this.main_btnNav_dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.main_btnNav_dashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.main_btnNav_dashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_dashboard.Location = new System.Drawing.Point(9, 91);
+            this.main_btnNav_dashboard.Location = new System.Drawing.Point(9, 99);
             this.main_btnNav_dashboard.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_dashboard.Name = "main_btnNav_dashboard";
             this.main_btnNav_dashboard.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.main_btnNav_dashboard.Size = new System.Drawing.Size(176, 35);
-            this.main_btnNav_dashboard.TabIndex = 17;
+            this.main_btnNav_dashboard.TabIndex = 0;
             this.main_btnNav_dashboard.Text = "Dashboard";
             this.main_btnNav_dashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.main_btnNav_dashboard.UseVisualStyleBackColor = false;
@@ -179,7 +223,7 @@ namespace projetSurf
             this.main_btnNav_logout.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_logout.Name = "main_btnNav_logout";
             this.main_btnNav_logout.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.main_btnNav_logout.Size = new System.Drawing.Size(181, 35);
+            this.main_btnNav_logout.Size = new System.Drawing.Size(182, 35);
             this.main_btnNav_logout.TabIndex = 14;
             this.main_btnNav_logout.Text = "Déconnexion";
             this.main_btnNav_logout.UseVisualStyleBackColor = false;
@@ -188,7 +232,7 @@ namespace projetSurf
             // main_indicator_monitor
             // 
             this.main_indicator_monitor.BackColor = System.Drawing.Color.Teal;
-            this.main_indicator_monitor.Location = new System.Drawing.Point(0, 286);
+            this.main_indicator_monitor.Location = new System.Drawing.Point(0, 274);
             this.main_indicator_monitor.Margin = new System.Windows.Forms.Padding(2);
             this.main_indicator_monitor.Name = "main_indicator_monitor";
             this.main_indicator_monitor.Size = new System.Drawing.Size(7, 35);
@@ -202,12 +246,12 @@ namespace projetSurf
             this.main_btnNav_monitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.main_btnNav_monitor.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.main_btnNav_monitor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_monitor.Location = new System.Drawing.Point(9, 286);
+            this.main_btnNav_monitor.Location = new System.Drawing.Point(9, 274);
             this.main_btnNav_monitor.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_monitor.Name = "main_btnNav_monitor";
             this.main_btnNav_monitor.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.main_btnNav_monitor.Size = new System.Drawing.Size(176, 35);
-            this.main_btnNav_monitor.TabIndex = 12;
+            this.main_btnNav_monitor.TabIndex = 6;
             this.main_btnNav_monitor.Text = "Employés";
             this.main_btnNav_monitor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.main_btnNav_monitor.UseVisualStyleBackColor = false;
@@ -216,7 +260,7 @@ namespace projetSurf
             // main_indicator_lesson
             // 
             this.main_indicator_lesson.BackColor = System.Drawing.Color.Teal;
-            this.main_indicator_lesson.Location = new System.Drawing.Point(0, 247);
+            this.main_indicator_lesson.Location = new System.Drawing.Point(0, 235);
             this.main_indicator_lesson.Margin = new System.Windows.Forms.Padding(2);
             this.main_indicator_lesson.Name = "main_indicator_lesson";
             this.main_indicator_lesson.Size = new System.Drawing.Size(7, 35);
@@ -230,49 +274,51 @@ namespace projetSurf
             this.main_btnNav_lesson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.main_btnNav_lesson.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.main_btnNav_lesson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_lesson.Location = new System.Drawing.Point(9, 247);
+            this.main_btnNav_lesson.Location = new System.Drawing.Point(9, 235);
             this.main_btnNav_lesson.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_lesson.Name = "main_btnNav_lesson";
             this.main_btnNav_lesson.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.main_btnNav_lesson.Size = new System.Drawing.Size(176, 35);
-            this.main_btnNav_lesson.TabIndex = 10;
+            this.main_btnNav_lesson.TabIndex = 5;
             this.main_btnNav_lesson.Text = "Cours";
             this.main_btnNav_lesson.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.main_btnNav_lesson.UseVisualStyleBackColor = false;
             this.main_btnNav_lesson.Click += new System.EventHandler(this.main_btnNav_lesson_Click);
             // 
-            // main_indicator_material
+            // main_indicator_board
             // 
-            this.main_indicator_material.BackColor = System.Drawing.Color.Teal;
-            this.main_indicator_material.Location = new System.Drawing.Point(0, 208);
-            this.main_indicator_material.Margin = new System.Windows.Forms.Padding(2);
-            this.main_indicator_material.Name = "main_indicator_material";
-            this.main_indicator_material.Size = new System.Drawing.Size(7, 35);
-            this.main_indicator_material.TabIndex = 9;
+            this.main_indicator_board.BackColor = System.Drawing.Color.Teal;
+            this.main_indicator_board.Location = new System.Drawing.Point(0, 431);
+            this.main_indicator_board.Margin = new System.Windows.Forms.Padding(2);
+            this.main_indicator_board.Name = "main_indicator_board";
+            this.main_indicator_board.Size = new System.Drawing.Size(7, 35);
+            this.main_indicator_board.TabIndex = 9;
+            this.main_indicator_board.Visible = false;
             // 
-            // main_btnNav_material
+            // main_btnNav_board
             // 
-            this.main_btnNav_material.BackColor = System.Drawing.Color.White;
-            this.main_btnNav_material.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.main_btnNav_material.FlatAppearance.BorderSize = 0;
-            this.main_btnNav_material.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.main_btnNav_material.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.main_btnNav_material.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_material.Location = new System.Drawing.Point(9, 208);
-            this.main_btnNav_material.Margin = new System.Windows.Forms.Padding(2);
-            this.main_btnNav_material.Name = "main_btnNav_material";
-            this.main_btnNav_material.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.main_btnNav_material.Size = new System.Drawing.Size(176, 35);
-            this.main_btnNav_material.TabIndex = 8;
-            this.main_btnNav_material.Text = "Matériels";
-            this.main_btnNav_material.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_material.UseVisualStyleBackColor = false;
-            this.main_btnNav_material.Click += new System.EventHandler(this.main_btnNav_material_Click);
+            this.main_btnNav_board.BackColor = System.Drawing.Color.White;
+            this.main_btnNav_board.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.main_btnNav_board.FlatAppearance.BorderSize = 0;
+            this.main_btnNav_board.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_btnNav_board.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.main_btnNav_board.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.main_btnNav_board.Location = new System.Drawing.Point(9, 431);
+            this.main_btnNav_board.Margin = new System.Windows.Forms.Padding(2);
+            this.main_btnNav_board.Name = "main_btnNav_board";
+            this.main_btnNav_board.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.main_btnNav_board.Size = new System.Drawing.Size(176, 35);
+            this.main_btnNav_board.TabIndex = 4;
+            this.main_btnNav_board.Text = "Planches";
+            this.main_btnNav_board.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.main_btnNav_board.UseVisualStyleBackColor = false;
+            this.main_btnNav_board.Visible = false;
+            this.main_btnNav_board.Click += new System.EventHandler(this.main_btnNav_board_Click);
             // 
             // main_indicator_student
             // 
             this.main_indicator_student.BackColor = System.Drawing.Color.Teal;
-            this.main_indicator_student.Location = new System.Drawing.Point(0, 169);
+            this.main_indicator_student.Location = new System.Drawing.Point(0, 196);
             this.main_indicator_student.Margin = new System.Windows.Forms.Padding(2);
             this.main_indicator_student.Name = "main_indicator_student";
             this.main_indicator_student.Size = new System.Drawing.Size(7, 35);
@@ -286,12 +332,12 @@ namespace projetSurf
             this.main_btnNav_student.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.main_btnNav_student.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.main_btnNav_student.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_student.Location = new System.Drawing.Point(9, 169);
+            this.main_btnNav_student.Location = new System.Drawing.Point(9, 196);
             this.main_btnNav_student.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_student.Name = "main_btnNav_student";
             this.main_btnNav_student.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.main_btnNav_student.Size = new System.Drawing.Size(176, 35);
-            this.main_btnNav_student.TabIndex = 6;
+            this.main_btnNav_student.TabIndex = 3;
             this.main_btnNav_student.Text = "Elèves";
             this.main_btnNav_student.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.main_btnNav_student.UseVisualStyleBackColor = false;
@@ -301,7 +347,7 @@ namespace projetSurf
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(36, 30);
+            this.label2.Location = new System.Drawing.Point(36, 31);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 30);
@@ -311,7 +357,7 @@ namespace projetSurf
             // main_indicator_client
             // 
             this.main_indicator_client.BackColor = System.Drawing.Color.Teal;
-            this.main_indicator_client.Location = new System.Drawing.Point(0, 130);
+            this.main_indicator_client.Location = new System.Drawing.Point(0, 157);
             this.main_indicator_client.Margin = new System.Windows.Forms.Padding(2);
             this.main_indicator_client.Name = "main_indicator_client";
             this.main_indicator_client.Size = new System.Drawing.Size(7, 35);
@@ -325,12 +371,12 @@ namespace projetSurf
             this.main_btnNav_client.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.main_btnNav_client.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.main_btnNav_client.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.main_btnNav_client.Location = new System.Drawing.Point(9, 130);
+            this.main_btnNav_client.Location = new System.Drawing.Point(9, 157);
             this.main_btnNav_client.Margin = new System.Windows.Forms.Padding(2);
             this.main_btnNav_client.Name = "main_btnNav_client";
             this.main_btnNav_client.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.main_btnNav_client.Size = new System.Drawing.Size(176, 35);
-            this.main_btnNav_client.TabIndex = 3;
+            this.main_btnNav_client.TabIndex = 2;
             this.main_btnNav_client.Text = "Clients";
             this.main_btnNav_client.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.main_btnNav_client.UseVisualStyleBackColor = false;
@@ -353,6 +399,7 @@ namespace projetSurf
             this.Controls.Add(this.main_pannel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(1400, 700);
             this.MinimumSize = new System.Drawing.Size(1400, 700);
@@ -385,12 +432,15 @@ namespace projetSurf
         private System.Windows.Forms.Button main_btnNav_monitor;
         private System.Windows.Forms.Panel main_indicator_lesson;
         private System.Windows.Forms.Button main_btnNav_lesson;
-        private System.Windows.Forms.Panel main_indicator_material;
-        private System.Windows.Forms.Button main_btnNav_material;
+        private System.Windows.Forms.Panel main_indicator_board;
+        private System.Windows.Forms.Button main_btnNav_board;
         private System.Windows.Forms.Button main_btnNav_logout;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel main_pannel;
         private System.Windows.Forms.Panel main_indicator_dashboard;
         private System.Windows.Forms.Button main_btnNav_dashboard;
+        private System.Windows.Forms.Panel main_indicator_wetsuit;
+        private System.Windows.Forms.Button main_btnNav_wetsuit;
+        private System.Windows.Forms.Panel panel6;
     }
 }

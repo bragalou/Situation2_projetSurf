@@ -56,7 +56,7 @@ namespace projetSurf.Manager
         }
         public List<Client> FindClient(string name)
         {
-            var list = Context.Clients.Where(p => p.NameClients.StartsWith(name) || p.FirstnameClients.StartsWith(name));
+            var list = Context.Clients.Where(p => p.NameClients.Contains(name) || p.FirstnameClients.Contains(name));
             return list.ToList();
         }
         public List<Client> FindClientName(string name)

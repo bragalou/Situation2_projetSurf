@@ -409,6 +409,7 @@ namespace projetSurf.Pages
             this.Controls.Add(this.main_monitor_btn_delete);
             this.Controls.Add(this.panel19);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPageMonitors";
             this.Text = "FormPageMonitors";
             this.Load += new System.EventHandler(this.FormPageMonitors_Load);

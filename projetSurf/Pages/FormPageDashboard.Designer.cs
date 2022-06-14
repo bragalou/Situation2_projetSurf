@@ -100,7 +100,7 @@ namespace projetSurf.Pages
             // 
             this.main_dashboard_btn_actualise.Cursor = System.Windows.Forms.Cursors.Hand;
             this.main_dashboard_btn_actualise.Image = ((System.Drawing.Image)(resources.GetObject("main_dashboard_btn_actualise.Image")));
-            this.main_dashboard_btn_actualise.Location = new System.Drawing.Point(1153, 13);
+            this.main_dashboard_btn_actualise.Location = new System.Drawing.Point(1147, 13);
             this.main_dashboard_btn_actualise.Name = "main_dashboard_btn_actualise";
             this.main_dashboard_btn_actualise.Size = new System.Drawing.Size(30, 26);
             this.main_dashboard_btn_actualise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -239,6 +239,7 @@ namespace projetSurf.Pages
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(557, 298);
             this.panel3.TabIndex = 28;
+            this.panel3.Visible = false;
             // 
             // panel8
             // 
@@ -406,6 +407,7 @@ namespace projetSurf.Pages
             this.Controls.Add(this.panel19);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPageDashboard";
             this.Text = "FormPageDashboard";
             this.Load += new System.EventHandler(this.FormPageDashboard_Load);
