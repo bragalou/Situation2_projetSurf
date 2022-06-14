@@ -239,6 +239,7 @@ namespace projetSurf.Pages
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(557, 298);
             this.panel3.TabIndex = 28;
+            this.panel3.Visible = false;
             // 
             // panel8
             // 

@@ -15,10 +15,9 @@ namespace projetSurf.Pages
 {
     public partial class FormPageMonitors : Form
     {
-        MonitorManager MonitorManager = new MonitorManager();
-        private Monitor MonitorSelected;
-
-
+        MonitorManager monitorManager = new MonitorManager();
+        PerformManager performManager = new PerformManager();
+        private Monitor monitorSelected;
 
         public FormPageMonitors()
         {
@@ -28,7 +27,7 @@ namespace projetSurf.Pages
         private void FormPageMonitors_Load(object sender, EventArgs e)
         {
             MonitorAffichageListeview();
-            MonitorReloadData(MonitorManager.AllMonitor());
+            MonitorReloadData(monitorManager.AllMonitor());
             MonitorResetInput();
         }
 
@@ -40,13 +39,13 @@ namespace projetSurf.Pages
         // Recherche
         private void main_monitor_btn_recherche_Click(object sender, EventArgs e)
         {
-            var list = MonitorManager.FindMonitor(main_monitor_inputRecherche.Text);
+            var list = monitorManager.FindMonitor(main_monitor_inputRecherche.Text);
             MonitorReloadData(list);
         }
         private void main_monitor_btn_reset_Click(object sender, EventArgs e)
         {
             MonitorResetInput();
-            MonitorReloadData(MonitorManager.AllMonitor());
+            MonitorReloadData(monitorManager.AllMonitor());
         }
 
         // Selection 
@@ -55,13 +54,13 @@ namespace projetSurf.Pages
             ListView.SelectedListViewItemCollection selected = main_monitor_listview.SelectedItems;
             if (selected.Count == 1)
             {
-                MonitorSelected = selected[0].Tag as Monitor;
+                monitorSelected = selected[0].Tag as Monitor;
 
-                main_monitor_inputFirstname.Text = MonitorSelected.FirstnameMonitors;
-                main_monitor_inputName.Text = MonitorSelected.NameMonitors;
-                main_monitor_inputDate.Value = MonitorSelected.DateBirthMonitors;
-                main_monitor_inputTel.Text = MonitorSelected.PhoneMonitor;
-                main_monitor_inputLogin.Text = MonitorSelected.LoginMonitor;
+                main_monitor_inputFirstname.Text = monitorSelected.FirstnameMonitors;
+                main_monitor_inputName.Text = monitorSelected.NameMonitors;
+                main_monitor_inputDate.Value = monitorSelected.DateBirthMonitors;
+                main_monitor_inputTel.Text = monitorSelected.PhoneMonitor;
+                main_monitor_inputLogin.Text = monitorSelected.LoginMonitor;
             }
         }
 
@@ -82,7 +81,7 @@ namespace projetSurf.Pages
                 }
                 else if (!string.IsNullOrEmpty(main_monitor_inputLogin.Text) && !string.IsNullOrEmpty(main_monitor_inputPassword.Text))
                 {
-                    Monitor monitorExist = MonitorManager.FindMonitorLogin(main_monitor_inputLogin.Text);
+                    Monitor monitorExist = monitorManager.FindMonitorLogin(main_monitor_inputLogin.Text);
                     if (monitorExist is null)
                     {
                         string hash;
@@ -107,16 +106,16 @@ namespace projetSurf.Pages
                     return;
                 }
 
-                MonitorManager.AddMonitor(newMonintor);
+                monitorManager.AddMonitor(newMonintor);
 
                 MonitorResetInput();
-                MonitorReloadData(MonitorManager.AllMonitor());
+                MonitorReloadData(monitorManager.AllMonitor());
             }
         }
 
         private void main_monitor_btn_update_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || MonitorSelected is null || string.IsNullOrEmpty(main_monitor_inputTel.Text))
+            if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || monitorSelected is null || string.IsNullOrEmpty(main_monitor_inputTel.Text))
             {
                 MessageBox.Show("Aucun employé sélectionné");
             }
@@ -124,18 +123,18 @@ namespace projetSurf.Pages
             {
                 if (string.IsNullOrEmpty(main_monitor_inputLogin.Text) && string.IsNullOrEmpty(main_monitor_inputPassword.Text))
                 {
-                    MonitorSelected.FirstnameMonitors = main_monitor_inputFirstname.Text;
-                    MonitorSelected.NameMonitors = main_monitor_inputName.Text;
-                    MonitorSelected.DateBirthMonitors = main_monitor_inputDate.Value;
-                    MonitorSelected.PhoneMonitor = main_monitor_inputTel.Text;
-                    MonitorSelected.AdministratorMonitor = false;
-                    MonitorSelected.LoginMonitor = null;
-                    MonitorSelected.PasswordMonitor = null;
+                    monitorSelected.FirstnameMonitors = main_monitor_inputFirstname.Text;
+                    monitorSelected.NameMonitors = main_monitor_inputName.Text;
+                    monitorSelected.DateBirthMonitors = main_monitor_inputDate.Value;
+                    monitorSelected.PhoneMonitor = main_monitor_inputTel.Text;
+                    monitorSelected.AdministratorMonitor = false;
+                    monitorSelected.LoginMonitor = null;
+                    monitorSelected.PasswordMonitor = null;
                 }
                 else if (!string.IsNullOrEmpty(main_monitor_inputLogin.Text) && !string.IsNullOrEmpty(main_monitor_inputPassword.Text))
                 {
-                    Monitor monitorExist = MonitorManager.FindMonitorLogin(main_monitor_inputLogin.Text);
-                    if (monitorExist is null || monitorExist.LoginMonitor == MonitorSelected.LoginMonitor)
+                    Monitor monitorExist = monitorManager.FindMonitorLogin(main_monitor_inputLogin.Text);
+                    if (monitorExist is null || monitorExist.LoginMonitor == monitorSelected.LoginMonitor)
                     {
                         string hash;
                         using (SHA256 sha256Hash = SHA256.Create())
@@ -144,13 +143,13 @@ namespace projetSurf.Pages
                             byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
                             hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
                         }
-                        MonitorSelected.FirstnameMonitors = main_monitor_inputFirstname.Text;
-                        MonitorSelected.NameMonitors = main_monitor_inputName.Text;
-                        MonitorSelected.DateBirthMonitors = main_monitor_inputDate.Value;
-                        MonitorSelected.PhoneMonitor = main_monitor_inputTel.Text;
-                        MonitorSelected.AdministratorMonitor = true;
-                        MonitorSelected.LoginMonitor = main_monitor_inputLogin.Text;
-                        MonitorSelected.PasswordMonitor = hash;
+                        monitorSelected.FirstnameMonitors = main_monitor_inputFirstname.Text;
+                        monitorSelected.NameMonitors = main_monitor_inputName.Text;
+                        monitorSelected.DateBirthMonitors = main_monitor_inputDate.Value;
+                        monitorSelected.PhoneMonitor = main_monitor_inputTel.Text;
+                        monitorSelected.AdministratorMonitor = true;
+                        monitorSelected.LoginMonitor = main_monitor_inputLogin.Text;
+                        monitorSelected.PasswordMonitor = hash;
                     }
                     else
                     {
@@ -160,12 +159,12 @@ namespace projetSurf.Pages
                 }
                 else if (!string.IsNullOrEmpty(main_monitor_inputLogin.Text) && string.IsNullOrEmpty(main_monitor_inputPassword.Text))
                 {
-                    MonitorSelected.FirstnameMonitors = main_monitor_inputFirstname.Text;
-                    MonitorSelected.NameMonitors = main_monitor_inputName.Text;
-                    MonitorSelected.DateBirthMonitors = main_monitor_inputDate.Value;
-                    MonitorSelected.PhoneMonitor = main_monitor_inputTel.Text;
-                    MonitorSelected.AdministratorMonitor = true;
-                    MonitorSelected.LoginMonitor = main_monitor_inputLogin.Text;
+                    monitorSelected.FirstnameMonitors = main_monitor_inputFirstname.Text;
+                    monitorSelected.NameMonitors = main_monitor_inputName.Text;
+                    monitorSelected.DateBirthMonitors = main_monitor_inputDate.Value;
+                    monitorSelected.PhoneMonitor = main_monitor_inputTel.Text;
+                    monitorSelected.AdministratorMonitor = true;
+                    monitorSelected.LoginMonitor = main_monitor_inputLogin.Text;
                 }
                 else
                 {
@@ -173,25 +172,26 @@ namespace projetSurf.Pages
                     return;
                 }
 
-                MonitorManager.EditMonitor(MonitorSelected);
+                monitorManager.EditMonitor(monitorSelected);
 
                 MonitorResetInput();
-                MonitorReloadData(MonitorManager.AllMonitor());
+                MonitorReloadData(monitorManager.AllMonitor());
             }
         }
 
         private void main_monitor_btn_delete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || MonitorSelected is null)
+            if (string.IsNullOrEmpty(main_monitor_inputFirstname.Text) || string.IsNullOrEmpty(main_monitor_inputName.Text) || monitorSelected is null)
             {
                 MessageBox.Show("Aucun employé sélectionné");
             }
             else
             {
-                MonitorManager.DeleteMonitor(MonitorSelected);
+                performManager.DeleteAllPerformByMonitor(monitorSelected.IdMonitors);
+                monitorManager.DeleteMonitor(monitorSelected);
 
                 MonitorResetInput();
-                MonitorReloadData(MonitorManager.AllMonitor());
+                MonitorReloadData(monitorManager.AllMonitor());
             }
         }
 
@@ -244,7 +244,7 @@ namespace projetSurf.Pages
             main_monitor_inputTel.Text = "";
             main_monitor_inputLogin.Text = "";
             main_monitor_inputPassword.Text = "";
-            MonitorSelected = null;
+            monitorSelected = null;
         }
 
         #endregion

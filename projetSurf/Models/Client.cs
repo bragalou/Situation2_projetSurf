@@ -11,7 +11,7 @@ namespace projetSurf.Models
         {
             Rents = new HashSet<Rent>();
         }
-        public Client(string nameClients, string firstnameClients)
+        public Client(string firstnameClients, string nameClients)
         {
             NameClients = nameClients;
             FirstnameClients = firstnameClients;

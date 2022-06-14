@@ -108,10 +108,12 @@ namespace projetSurf.Pages
             // 
             // main_client_listview
             // 
+            this.main_client_listview.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.main_client_listview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.main_client_listview.FullRowSelect = true;
             this.main_client_listview.GridLines = true;
             this.main_client_listview.HideSelection = false;
+            this.main_client_listview.HoverSelection = true;
             this.main_client_listview.Location = new System.Drawing.Point(0, 0);
             this.main_client_listview.Margin = new System.Windows.Forms.Padding(2);
             this.main_client_listview.Name = "main_client_listview";

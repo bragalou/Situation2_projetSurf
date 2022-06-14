@@ -43,19 +43,27 @@ namespace projetSurf.Pages
         {
             if (main_updateLesson_Datagridview.Columns[e.ColumnIndex].Name == "Add")
             {
-                if (Int32.Parse(main_updateLesson_Datagridview.Rows[e.RowIndex].Cells[7].Value.ToString()) > 0)
+                int idLesson = Int32.Parse(main_updateLesson_Datagridview.Rows[e.RowIndex].Cells[0].Value.ToString());
+                if (doManager.FindRelation(idStudent, idLesson) == null)
                 {
-                    int idLesson = Int32.Parse(main_updateLesson_Datagridview.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    Do nvRelation = new Do(idLesson, idStudent);
-                    doManager.AddDo(nvRelation);
-                    //Modification valeur freePlace_lessons par Trigger
-                    //System.Threading.Thread.Sleep(5000);
-                    UpdateLessonReloadData(lessonManager.AllLessons());
+                    if (Int32.Parse(main_updateLesson_Datagridview.Rows[e.RowIndex].Cells[7].Value.ToString()) > 0)
+                    {
+                        Do nvRelation = new Do(idLesson, idStudent);
+                        doManager.AddDo(nvRelation);
+                        //Modification valeur freePlace_lessons par Trigger
+                        //System.Threading.Thread.Sleep(5000);
+                        UpdateLessonReloadData(lessonManager.AllLessons());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Il n'y a plus de place dans ce cours.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Il n'y a plus de place dans ce cours");
+                    MessageBox.Show("L'élève est déjà inscrit.");
                 }
+
             }
             else if (main_updateLesson_Datagridview.Columns[e.ColumnIndex].Name == "Delete")
             {
@@ -97,7 +105,7 @@ namespace projetSurf.Pages
                 //    row.BackgroundColor 
                 //}
             }
-    }
+        }
         #endregion
 
     }

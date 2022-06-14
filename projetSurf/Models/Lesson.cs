@@ -15,7 +15,7 @@ namespace projetSurf.Models
             Uses = new HashSet<Use>();
         }
 
-        public Lesson(string nameLessons, DateTime dateStartLessons, string dayLessons, int numberLessons, TimeSpan startHourLessons, TimeSpan durationLessons, int nmbMaxLessons, float priceLessons, string levelLessons)
+        public Lesson(string nameLessons, DateTime dateStartLessons, string dayLessons, int numberLessons, TimeSpan startHourLessons, TimeSpan durationLessons, int nmbMaxLessons, float priceLessons, string levelLessons, int freePlaceLessons)
         {
             NameLessons = nameLessons;
             DateStartLessons = dateStartLessons;
@@ -26,6 +26,7 @@ namespace projetSurf.Models
             NmbMaxLessons = nmbMaxLessons;
             PriceLessons = priceLessons;
             LevelLessons = levelLessons;
+            FreePlaceLessons = freePlaceLessons;
         }
         public int IdLessons { get; set; }
         public string NameLessons { get; set; }

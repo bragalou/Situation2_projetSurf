@@ -65,7 +65,7 @@ namespace projetSurf.Manager
         }
         public List<Student> FindStudent(string name)
         {
-            var list = Context.Students.Where(p => p.FirstnameClients.StartsWith(name));
+            var list = Context.Students.Where(p => p.FirstnameClients.Contains(name) || p.NameClients.Contains(name));
             return list.ToList();
         }
         public int NmbStudent()

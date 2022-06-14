@@ -15,6 +15,8 @@ namespace projetSurf.Pages
     public partial class FormPageClients : Form
     {
         ClientManager ClientManager = new ClientManager();
+        StudentManager studentManager = new StudentManager();
+        DoManager doManager = new DoManager();
         private Client clientSelected;
 
 
@@ -87,8 +89,22 @@ namespace projetSurf.Pages
             {
                 clientSelected.FirstnameClients = main_client_inputFirstname.Text;
                 clientSelected.NameClients = main_client_inputName.Text;
+                
+
+                // si c aussi un eleve on le modifie
+                Student infoStudent = studentManager.FindStudent(clientSelected.IdClients);
+                if (infoStudent != null)
+                {
+                    infoStudent.FirstnameClients = clientSelected.FirstnameClients;
+                    infoStudent.NameClients = clientSelected.NameClients;
+                    //Student student = new Student(clientSelected.IdClients, clientSelected.FirstnameClients, clientSelected.NameClients, infoStudent.PhoneStudents, infoStudent.PostalCodeStudents, infoStudent.DateBirthStudents);
+                    studentManager.EditStudent(infoStudent);
+                }
+
+                // on supprimer le client
                 ClientManager.EditClient(clientSelected);
 
+                // on actualise l'affichage
                 ClientResetInput();
                 ClientReloadData(ClientManager.AllClient());
             }
@@ -101,6 +117,24 @@ namespace projetSurf.Pages
             }
             else
             {
+                // si c un eleve qui ets inscrit a des cours on le supprime
+                List<Do> relation = doManager.FindLessonsByStudent(clientSelected.IdClients);
+                if (relation.Count != 0)
+                {
+                    foreach (Do uneRelation in relation)
+                    {
+                        doManager.DeleteDo(uneRelation.IdClients, uneRelation.IdLessons);
+                    }
+                }
+
+                // si c aussi un eleve on le supprime
+                Student infoStudent = studentManager.FindStudent(clientSelected.IdClients);
+                if (infoStudent != null)
+                {
+                    studentManager.DeleteStudent(clientSelected.IdClients);
+                }
+
+                // on supprimer le client
                 ClientManager.DeleteClient(clientSelected);
 
                 ClientResetInput();

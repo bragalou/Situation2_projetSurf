@@ -46,7 +46,7 @@ namespace projetSurf.Pages
         }
 
         // ----- Selection
-        private void main_lesson_listview_SelectedIndexChanged(object sender, EventArgs e)
+        private void main_lesson_listview_DoubleClick(object sender, EventArgs e)
         {
             ListView.SelectedListViewItemCollection selected = main_lesson_listview.SelectedItems;
             if (selected.Count == 1)
@@ -63,7 +63,7 @@ namespace projetSurf.Pages
                 main_lesson_inputStartHour.Value = new DateTime(today.Year, today.Month, today.Day, lessonSelected.StartHourLessons.Hours, lessonSelected.StartHourLessons.Minutes, lessonSelected.StartHourLessons.Seconds);
                 main_lesson_inputDuration.Value = new DateTime(today.Year, today.Month, today.Day, lessonSelected.DurationLessons.Hours, lessonSelected.DurationLessons.Minutes, lessonSelected.DurationLessons.Seconds);
                 main_lesson_inputNmbMax.Value = lessonSelected.NmbMaxLessons;
-                main_lesson_inputPrice.Value = (decimal) lessonSelected.PriceLessons;
+                main_lesson_inputPrice.Value = (decimal)lessonSelected.PriceLessons;
 
                 var monitor = performManager.FindMonitorByLesson(lessonSelected.IdLessons);
                 string nameMonitor = "Melvin BORRELL";
@@ -99,11 +99,11 @@ namespace projetSurf.Pages
                 } 
                 else
                 {                  
-                    Lesson lesson = new Lesson(main_lesson_inputName.Text, main_lesson_inputDateStart.Value, main_lesson_inputDay.Text, (int)main_lesson_inputNumber.Value, main_lesson_inputStartHour.Value.TimeOfDay, main_lesson_inputDuration.Value.TimeOfDay, (int)main_lesson_inputNmbMax.Value, (float)main_lesson_inputPrice.Value, main_lesson_inputLevel.Text);
+                    Lesson lesson = new Lesson(main_lesson_inputName.Text, main_lesson_inputDateStart.Value, main_lesson_inputDay.Text, (int)main_lesson_inputNumber.Value, main_lesson_inputStartHour.Value.TimeOfDay, main_lesson_inputDuration.Value.TimeOfDay, (int)main_lesson_inputNmbMax.Value, (float)main_lesson_inputPrice.Value, main_lesson_inputLevel.Text, (int)main_lesson_inputNmbMax.Value);
                     Lesson lessonAdd = lessonManager.AddLesson(lesson);
                     
-                    Perform perform = new Perform((int) main_lesson_inputMoniteur.SelectedValue, lessonAdd.IdLessons);
-                    performManager.AddPerform(perform);
+                    //Perform perform = new Perform((int) main_lesson_inputMoniteur.SelectedValue, lessonAdd.IdLessons);
+                    //performManager.AddPerform(perform);
                     
                     LessonResetInput();
                     LessonReloadData(lessonManager.AllLessonsInProgress());
@@ -133,8 +133,10 @@ namespace projetSurf.Pages
                     lessonSelected.DurationLessons = main_lesson_inputDuration.Value.TimeOfDay;
                     lessonSelected.NmbMaxLessons = (int)main_lesson_inputNmbMax.Value;
                     lessonSelected.PriceLessons = (float)main_lesson_inputPrice.Value;
+                    lessonSelected.FreePlaceLessons = (int)main_lesson_inputNmbMax.Value - nmbInscrit;
 
                     lessonManager.EditLesson(lessonSelected);
+
 
                     LessonResetInput();
                     LessonReloadData(lessonManager.AllLessonsInProgress());
@@ -154,20 +156,27 @@ namespace projetSurf.Pages
             }
             else
             {
-                //var monitor = performManager.FindMonitorByLesson(lessonSelected.IdLessons);
-                //if (monitor.Count > 0)
-                //{
-                    //Perform perform = new Perform(monitor[0].IdMonitors, lessonSelected.IdLessons);
-                    Perform perform = new Perform((int)main_lesson_inputMoniteur.SelectedValue, lessonSelected.IdLessons);
-                    //performManager.DeletePerfom(perform);
-                //}
+                doManager.DeleteAllDobyLesson(lessonSelected.IdLessons);
+
+                performManager.DeleteAllPerformByLesson(lessonSelected.IdLessons);
+
 
                 lessonManager.DeleteLesson(lessonSelected);
 
                 LessonResetInput();
                 LessonReloadData(lessonManager.AllLessonsInProgress());
             }
-        }       
+        }
+        private void main_lesson_btn_updateMonitor_Click(object sender, EventArgs e)
+        {
+            if (lessonSelected != null)
+            {
+                AddFormPageAttributeMonitors addFormPageAttributeMonitors = new AddFormPageAttributeMonitors();
+                addFormPageAttributeMonitors.nameLesson = lessonSelected.NameLessons;
+                addFormPageAttributeMonitors.idLesson = lessonSelected.IdLessons;
+                addFormPageAttributeMonitors.ShowDialog();
+            }
+        }
         #endregion
 
 
@@ -227,6 +236,8 @@ namespace projetSurf.Pages
             main_lesson_inputDuration.Text = "";
             main_lesson_inputNmbMax.Value = 0;
             main_lesson_inputPrice.Value = 0;
+
+            main_lesson_inputRecherche.Text = "";
 
             main_lesson_inputMoniteur.Text = "";
 

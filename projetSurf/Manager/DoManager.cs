@@ -31,6 +31,20 @@ namespace projetSurf.Manager
             return false;
         }
 
+        public bool DeleteAllDobyLesson(int idLesson)
+        {
+            var relations = Context.Dos.Where(f => f.IdLessons == idLesson);
+            if (relations != null)
+            {
+                foreach (Do relation in relations)
+                {
+                    Context.Dos.Remove(relation);
+                }
+                return (Context.SaveChanges() > 0);
+            }
+            return false;
+        }
+
 
         // ----- FIND -----
         public List<Do> FindLessonsByStudent(int id)

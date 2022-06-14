@@ -21,8 +21,8 @@ namespace projetSurf.Manager
             return null;
         }
 
-        // ----- REmove -----
-        public bool RemovePerform(int idMonitor, int idLesson)
+        // ----- Remove -----
+        public bool DeletePerform(int idMonitor, int idLesson)
         {
             var relation = Context.Performs.Where(f => f.IdMonitors == idMonitor && f.IdLessons == idLesson).FirstOrDefault();
             if (relation != null)
@@ -33,6 +33,32 @@ namespace projetSurf.Manager
             return false;
         }
 
+        public bool DeleteAllPerformByLesson(int idLesson)
+        {
+            var relations = Context.Performs.Where(f => f.IdLessons == idLesson);
+            if (relations != null)
+            {
+                foreach (Perform relation in relations)
+                {
+                    Context.Performs.Remove(relation);
+                }
+                return (Context.SaveChanges() > 0);
+            }
+            return false;
+        }
+        public bool DeleteAllPerformByMonitor(int idMonitor)
+        {
+            var relations = Context.Performs.Where(f => f.IdMonitors == idMonitor);
+            if (relations != null)
+            {
+                foreach (Perform relation in relations)
+                {
+                    Context.Performs.Remove(relation);
+                }
+                return (Context.SaveChanges() > 0);
+            }
+            return false;
+        }
 
         // ----- FIND -----
         public List<Perform> FindMonitorByLesson(int id)
@@ -41,6 +67,13 @@ namespace projetSurf.Manager
             list = list.Where(f => f.IdLessons.Equals(id));
             //list = list.Select(f => f.IdMonitorsNavigation.FirstnameMonitors);
             return list.ToList();
+        }
+        public Perform FindRelation(int idMonitor, int idLesson)
+        {
+            var relation = Context.Performs.Where(f => f.IdMonitors == idMonitor && f.IdLessons == idLesson).FirstOrDefault();
+            if (relation != null)
+                return relation;
+            return null;
         }
     }
 }

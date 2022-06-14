@@ -85,8 +85,8 @@ namespace projetSurf.Pages
                 Student newStudent = new Student(client.IdClients, main_student_inputFirstname.Text, main_student_inputName.Text, main_student_inputTel.Text, main_student_inputCP.Text, main_student_inputDate.Value);
                 Student studentAdd = StudentManager.AddStudent(newStudent);
 
-                Do inscrit = new Do((int)main_student_inputLesson.SelectedValue, studentAdd.IdClients);
-                DoManager.AddDo(inscrit);
+                //Do inscrit = new Do((int)main_student_inputLesson.SelectedValue, studentAdd.IdClients);
+                //DoManager.AddDo(inscrit);
 
                 StudentResetInput();
                 StudentReloadData(StudentManager.AllStudents());
@@ -107,6 +107,9 @@ namespace projetSurf.Pages
                 studentSelected.PostalCodeStudents = main_student_inputCP.Text;
                 studentSelected.DateBirthStudents = main_student_inputDate.Value;
                 Student studentAdd = StudentManager.EditStudent(studentSelected);
+
+                Client updateClient = new Client(studentSelected.IdClients ,main_student_inputFirstname.Text, main_student_inputName.Text);
+                ClientManager.EditClient(updateClient);
 
                 StudentResetInput();
                 StudentReloadData(StudentManager.AllStudents());
@@ -220,6 +223,7 @@ namespace projetSurf.Pages
             main_student_inputTel.Text = "";
             main_student_inputCP.Text = "";
             main_student_inputDate.Text = "";
+            main_student_inputRecherche.Text = "";
 
             //vider le listViws avec la liste des cours
             main_student_labelNameStudent.Text = "";

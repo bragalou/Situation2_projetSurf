@@ -63,6 +63,7 @@ namespace projetSurf.Pages
             this.main_lesson_inputDuration = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.main_lesson_inputMoniteur = new System.Windows.Forms.ComboBox();
+            this.main_lesson_btn_updateMonitor = new System.Windows.Forms.Button();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -88,6 +89,7 @@ namespace projetSurf.Pages
             this.main_lesson_listview.FullRowSelect = true;
             this.main_lesson_listview.GridLines = true;
             this.main_lesson_listview.HideSelection = false;
+            this.main_lesson_listview.HoverSelection = true;
             this.main_lesson_listview.Location = new System.Drawing.Point(0, 0);
             this.main_lesson_listview.Margin = new System.Windows.Forms.Padding(2);
             this.main_lesson_listview.Name = "main_lesson_listview";
@@ -95,7 +97,7 @@ namespace projetSurf.Pages
             this.main_lesson_listview.TabIndex = 0;
             this.main_lesson_listview.UseCompatibleStateImageBehavior = false;
             this.main_lesson_listview.View = System.Windows.Forms.View.Details;
-            this.main_lesson_listview.SelectedIndexChanged += new System.EventHandler(this.main_lesson_listview_SelectedIndexChanged);
+            this.main_lesson_listview.DoubleClick += new System.EventHandler(this.main_lesson_listview_DoubleClick);
             // 
             // panel16
             // 
@@ -442,6 +444,7 @@ namespace projetSurf.Pages
             this.label7.Size = new System.Drawing.Size(76, 20);
             this.label7.TabIndex = 83;
             this.label7.Text = "Moniteur :";
+            this.label7.Visible = false;
             // 
             // main_lesson_inputMoniteur
             // 
@@ -455,6 +458,19 @@ namespace projetSurf.Pages
             this.main_lesson_inputMoniteur.Name = "main_lesson_inputMoniteur";
             this.main_lesson_inputMoniteur.Size = new System.Drawing.Size(152, 28);
             this.main_lesson_inputMoniteur.TabIndex = 85;
+            this.main_lesson_inputMoniteur.Visible = false;
+            // 
+            // main_lesson_btn_updateMonitor
+            // 
+            this.main_lesson_btn_updateMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.main_lesson_btn_updateMonitor.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.main_lesson_btn_updateMonitor.Location = new System.Drawing.Point(212, 483);
+            this.main_lesson_btn_updateMonitor.Name = "main_lesson_btn_updateMonitor";
+            this.main_lesson_btn_updateMonitor.Size = new System.Drawing.Size(170, 34);
+            this.main_lesson_btn_updateMonitor.TabIndex = 86;
+            this.main_lesson_btn_updateMonitor.Text = "Gestion moniteur";
+            this.main_lesson_btn_updateMonitor.UseVisualStyleBackColor = true;
+            this.main_lesson_btn_updateMonitor.Click += new System.EventHandler(this.main_lesson_btn_updateMonitor_Click);
             // 
             // FormPageLessons
             // 
@@ -462,6 +478,7 @@ namespace projetSurf.Pages
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1195, 581);
+            this.Controls.Add(this.main_lesson_btn_updateMonitor);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.main_lesson_inputDuration);
             this.Controls.Add(this.main_lesson_inputStartHour);
@@ -541,5 +558,6 @@ namespace projetSurf.Pages
         protected System.Windows.Forms.DateTimePicker main_lesson_inputDuration;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox main_lesson_inputMoniteur;
+        private System.Windows.Forms.Button main_lesson_btn_updateMonitor;
     }
 }
