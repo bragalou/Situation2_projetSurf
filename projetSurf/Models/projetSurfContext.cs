@@ -355,6 +355,11 @@ namespace projetSurf.Models
                     .HasMaxLength(10)
                     .HasColumnName("phone_students");
 
+                entity.Property(e => e.MailStudents)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnName("mail_students");
+
                 entity.Property(e => e.PostalCodeStudents)
                     .IsRequired()
                     .HasMaxLength(10)

@@ -232,6 +232,7 @@ namespace projetSurf.Pages
             this.main_monitor_listview.FullRowSelect = true;
             this.main_monitor_listview.GridLines = true;
             this.main_monitor_listview.HideSelection = false;
+            this.main_monitor_listview.HoverSelection = true;
             this.main_monitor_listview.Location = new System.Drawing.Point(0, 0);
             this.main_monitor_listview.Margin = new System.Windows.Forms.Padding(2);
             this.main_monitor_listview.Name = "main_monitor_listview";

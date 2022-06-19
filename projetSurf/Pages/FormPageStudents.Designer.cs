@@ -61,7 +61,6 @@ namespace projetSurf.Pages
             this.main_student_inputCP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.main_student_inputLesson = new System.Windows.Forms.ComboBox();
-            this.mySqlCommand1 = new MySqlConnector.MySqlCommand();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -116,6 +115,7 @@ namespace projetSurf.Pages
             this.main_student_listviewPerson.FullRowSelect = true;
             this.main_student_listviewPerson.GridLines = true;
             this.main_student_listviewPerson.HideSelection = false;
+            this.main_student_listviewPerson.HoverSelection = true;
             this.main_student_listviewPerson.Location = new System.Drawing.Point(200, 0);
             this.main_student_listviewPerson.Margin = new System.Windows.Forms.Padding(2);
             this.main_student_listviewPerson.Name = "main_student_listviewPerson";
@@ -428,13 +428,6 @@ namespace projetSurf.Pages
             this.main_student_inputLesson.TabIndex = 87;
             this.main_student_inputLesson.Visible = false;
             // 
-            // mySqlCommand1
-            // 
-            this.mySqlCommand1.CommandTimeout = 0;
-            this.mySqlCommand1.Connection = null;
-            this.mySqlCommand1.Transaction = null;
-            this.mySqlCommand1.UpdatedRowSource = System.Data.UpdateRowSource.None;
-            // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -518,7 +511,6 @@ namespace projetSurf.Pages
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox main_student_inputLesson;
-        private MySqlConnector.MySqlCommand mySqlCommand1;
         private System.Windows.Forms.Button main_student_updateLesson;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel2;

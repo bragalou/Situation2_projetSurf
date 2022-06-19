@@ -1,4 +1,5 @@
-﻿using projetSurf.Manager;
+﻿using projetSurf.Functions;
+using projetSurf.Manager;
 using projetSurf.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace projetSurf.Pages
         DoManager doManager = new DoManager();
         PerformManager performManager = new PerformManager();
         MonitorManager monitorManager = new MonitorManager();
+
+        GestionMail gestionMail = new GestionMail();
+
         private Lesson lessonSelected;
 
         public FormPageLessons()
@@ -110,18 +114,25 @@ namespace projetSurf.Pages
                 }
             }
         }
+        
+        
+        
         private void main_lesson_btn_update_Click(object sender, EventArgs e)
         {
+            // on vérifie que l'utilisateur à bien sélectionné une leçon
             if (lessonSelected is null)
             {
+                // si ce n'est pas le cas : affichage d'un message d'erreur
                 MessageBox.Show("Aucun client sélectionné");
                 return;
             }
             else
             {
+                // calcul du nombre d'inscrit
                 Lesson oldLesson = lessonManager.FindUniqueExactLessonByNameOBJ(main_lesson_inputName.Text);
                 int nmbInscrit = oldLesson.NmbMaxLessons - oldLesson.FreePlaceLessons;
 
+                // si le nouveau nombre d'élève max peut comporter les élève déjè onscrit, on met a jour la lesson sélectionné
                 if ((int)main_lesson_inputNmbMax.Value >= nmbInscrit)
                 {
                     lessonSelected.NameLessons = main_lesson_inputName.Text;
@@ -134,10 +145,17 @@ namespace projetSurf.Pages
                     lessonSelected.NmbMaxLessons = (int)main_lesson_inputNmbMax.Value;
                     lessonSelected.PriceLessons = (float)main_lesson_inputPrice.Value;
                     lessonSelected.FreePlaceLessons = (int)main_lesson_inputNmbMax.Value - nmbInscrit;
-
+                    
+                    // appel focntion charger de mettre à jour la base de données via entityframework
                     lessonManager.EditLesson(lessonSelected);
 
+                    // on récupère la liste des élèves inscrits à cette leçon :
+                    List<Do> listeStudent = doManager.FindStudentByLesson(lessonSelected.IdLessons);
 
+                    // appel de la fonciton charger d'envoyer le mail à chacune des élèves ( en passant les liste des élève inscrit et la lesson en question)
+                    gestionMail.SendMailLessonUpdate(listeStudent, lessonSelected);
+
+                    // on actualise l'affichage des leçons
                     LessonResetInput();
                     LessonReloadData(lessonManager.AllLessonsInProgress());
                 }
@@ -148,6 +166,8 @@ namespace projetSurf.Pages
                 }
             }
         }
+
+
         private void main_lesson_btn_delete_Click(object sender, EventArgs e)
         {
             if(lessonSelected is null)
@@ -156,17 +176,26 @@ namespace projetSurf.Pages
             }
             else
             {
+                // on récupère la liste des élèves inscrits à cette leçon :
+                List<Do> listeStudent = doManager.FindStudentByLesson(lessonSelected.IdLessons);
+
+                // supprimer les relations entre student et lessons et monitor et lessons
                 doManager.DeleteAllDobyLesson(lessonSelected.IdLessons);
-
                 performManager.DeleteAllPerformByLesson(lessonSelected.IdLessons);
-
-
+                // supprimer la lessons
                 lessonManager.DeleteLesson(lessonSelected);
 
+                // appel de la fonciton charger d'envoyer le mail à chacune des élèves ( en passant les liste des élève inscrit et la lesson en question)
+                gestionMail.SendMailLessonDelete(listeStudent, lessonSelected);
+
+                // on actualise l'affichage des leçons
                 LessonResetInput();
                 LessonReloadData(lessonManager.AllLessonsInProgress());
             }
         }
+
+
+
         private void main_lesson_btn_updateMonitor_Click(object sender, EventArgs e)
         {
             if (lessonSelected != null)

@@ -176,3 +176,16 @@ namespace projetSurf.Pages
         #endregion        
     }
 }
+
+//if (product.StockProduct <= 0)
+//{
+//    lvi.BackColor = Color.Red;
+//}
+//else if (product.StockProduct <= 7)
+//{
+//    lvi.BackColor = Color.Orange;
+//}
+//else
+//{
+//    lvi.BackColor = Color.LightGray;
+//}
